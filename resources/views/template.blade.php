@@ -109,57 +109,27 @@
                   </li><!-- END user info-->
                   <!-- Iterates over all sidebar items-->
                   <li class="nav-heading "><span data-localize="sidebar.heading.HEADER">Main Navigation</span></li>
-                  <!--@php
-                     $Cus = App\Cu::all();
+                  @php
+                     $menu = Auth::user()->menu();
                   @endphp
               
-                   @foreach($Cus as $cu)
+                   @foreach($menu as $key => $item)
                      <li class=" ">
-                        <a href="#dashboard{{$cu->id}}" title="Dashboard" data-toggle="collapse">
+                        <a href="#dashboard{{$item['id']}}" title="Dashboard" data-toggle="collapse">
                            <em class="icon-speedometer"></em>
-                           <span data-localize="sidebar.nav.DASHBOARD">{{$cu->nombre_cu}}</span>
+                           <span data-localize="sidebar.nav.DASHBOARD">{{$key}}</span>
                         </a>
-                        <ul class="sidebar-nav sidebar-subnav collapse" id="dashboard{{$cu->id}}">
-                           <li class=""><a href="{{url('/'.$cu->ruta)}}" title="Dashboard v1"><span>Listar</span></a></li>
-                           <li class=""><a href="{{url('/'.$cu->ruta.'/create')}}" title="Dashboard v1"><span>Registrar</span></a></li>
-                           <li class=""><a href="{{url('/'.$cu->ruta.'/create/estudiante')}}" title="Dashboard v1"><span>Registrar estudiante</span></a></li>
-                           <li class=""><a href="{{url('/'.$cu->ruta.'/create/docente')}}" title="Dashboard v1"><span>Registrar docente</span></a></li>
-                           <li class=""><a href="{{url('/'.$cu->ruta.'/create/externo')}}" title="Dashboard v1"><span>Registrar externo</span></a></li>
+                        <ul class="sidebar-nav sidebar-subnav collapse" id="dashboard{{$item['id']}}">
+                           @foreach ($item['cus'] as $cu)
+                              <li class="">
+                                 <a href='{{ route("$cu->route".".index") }}' title="Dashboard v1">
+                                    <span>{{ $cu->nombre }}</span>
+                                 </a>
+                              </li>
+                           @endforeach
                         </ul>
                      </li>
-                  @endforeach -->
-                  @php
-                     $gUser = Auth::user()->hasRole(2);
-                  @endphp
-                  @if($gUser['total']>0)
-                     <li class=" ">
-                        <a href="#dashboard1" title="Dashboard" data-toggle="collapse">
-                           <em class="icon-speedometer"></em>
-                           <span data-localize="sidebar.nav.DASHBOARD">Gestión de usuario</span>
-                        </a>
-                        <ul class="sidebar-nav sidebar-subnav collapse" id="dashboard1">
-                           @if($gUser['leer'])
-                              <li class=""><a href="{{url('/user')}}" title="Dashboard v1"><span>Listar</span></a></li>
-                           @endif
-                           @if($gUser['escribir'])
-                              <li class=""><a href="{{url('/user/create/estudiante')}}" title="Dashboard v1"><span>Registrar estudiante</span></a></li>
-                              <li class=""><a href="{{url('/user/create/docente')}}" title="Dashboard v1"><span>Registrar docente</span></a></li>
-                              <li class=""><a href="{{url('/user/create/externo')}}" title="Dashboard v1"><span>Registrar externo</span></a></li>
-                           @endif
-                        </ul>
-                     </li>
-                  @endif
-
-                  <li class=" ">
-                     <a href="#dashboard2" title="Dashboard" data-toggle="collapse">
-                        <em class="icon-speedometer"></em>
-                        <span data-localize="sidebar.nav.DASHBOARD">Adm Privilegios</span>
-                     </a>
-                     <ul class="sidebar-nav sidebar-subnav collapse" id="dashboard2">
-                        <li class=""><a href="{{url('/adm')}}" title="Dashboard v1"><span>Listar</span></a></li>
-                        <li class=""><a href="{{url('/adm/create')}}" title="Dashboard v1"><span>Registrar</span></a></li>
-                     </ul>
-                  </li>
+                  @endforeach
                </ul><!-- END sidebar nav-->
             </nav>
          </div><!-- END Sidebar (left)-->

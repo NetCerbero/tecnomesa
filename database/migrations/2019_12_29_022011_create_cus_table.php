@@ -17,6 +17,7 @@ class CreateCusTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('icon');
+            $table->string('route');
             $table->unsignedBigInteger('paquete_id');
             // foreign key
             $table->foreign('paquete_id')->references('id')->on('paquetes');

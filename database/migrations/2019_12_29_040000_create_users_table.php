@@ -18,13 +18,14 @@ class CreateUsersTable extends Migration
             $table->string('nombre')->nullable();
             $table->string('apellido')->nullable();
             $table->string('telefono')->nullable();
+            $table->string('foto')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
             $table->string('registro');
             $table->char('genero',1)->nullable();
-            // 1 = estudiante | 2 = tribunal | 3 = docente | 4 = administrativo
+            // 1 = estudiante | 2 = tribunal | 3 = docente | 4 = administrador
             $table->integer('tipo');
 
             // foreign key

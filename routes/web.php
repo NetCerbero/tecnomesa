@@ -16,6 +16,31 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
 Route::group(['middleware' => ['auth']], function () {
+
 	Route::get('/home', 'HomeController@index')->name('home');
+
+	// 1 
+	Route::resource('usuario','UserController');
+	Route::get('usuario/data/user/{reg}','UserController@getUserData')->name('user_api');
+
+	Route::resource('empresa','UserController');
+	Route::resource('regimen','UserController');
+	Route::resource('sector','UserController');
+
+	Route::resource('privilegio','PermisoController');
+	Route::resource('rol','RolController');
+
+
+	// 2
+	Route::resource('egresado','UserController');
+	Route::resource('avance','UserController');
+	Route::resource('asignacion','UserController');
+	Route::resource('evaluacion','PermisoController');
+	
+	// 3
+	Route::resource('titulado','PermisoController');
+	Route::resource('postgrado','PermisoController');
+	Route::resource('inflaboral','PermisoController');
 });
