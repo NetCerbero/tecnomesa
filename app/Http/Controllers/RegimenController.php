@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Rol;
 use Illuminate\Http\Request;
-
-class RolController extends Controller
+use App\Regimen;
+class RegimenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +12,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        return view('rol.index');
+        $regimenes = Regimen::all();
+        return view('regimen.index',compact('regimenes'));
     }
 
     /**
@@ -24,7 +23,7 @@ class RolController extends Controller
      */
     public function create()
     {
-        //
+        return view('regimen.create');
     }
 
     /**
@@ -35,16 +34,17 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Regimen::create($request->all());
+        return redirect()->route('regimen.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Rol  $rol
+     * @param  \App\Regimen  $regimen
      * @return \Illuminate\Http\Response
      */
-    public function show(Rol $rol)
+    public function show(Regimen $regimen)
     {
         //
     }
@@ -52,10 +52,10 @@ class RolController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Rol  $rol
+     * @param  \App\Regimen  $regimen
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rol $rol)
+    public function edit(Regimen $regimen)
     {
         //
     }
@@ -64,10 +64,10 @@ class RolController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Rol  $rol
+     * @param  \App\Regimen  $regimen
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rol $rol)
+    public function update(Request $request, Regimen $regimen)
     {
         //
     }
@@ -75,10 +75,10 @@ class RolController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Rol  $rol
+     * @param  \App\Regimen  $regimen
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rol $rol)
+    public function destroy(Regimen $regimen)
     {
         //
     }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Rol;
+use App\Empresa;
 use Illuminate\Http\Request;
+use App\Regimen;
+use App\Sector;
 
-class RolController extends Controller
+class EmpresaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        return view('rol.index');
+        $empresas = Empresa::all();
+        return view('empresa.index',compact('empresas'));
     }
 
     /**
@@ -24,7 +27,9 @@ class RolController extends Controller
      */
     public function create()
     {
-        //
+        $sectores = Sector::all();
+        $regimenes = Regimen::all();
+        return view('empresa.create',compact('sectores','regimenes'));
     }
 
     /**
@@ -35,16 +40,17 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Empresa::create($request->all());
+        return redirect()->route('empresa.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Rol  $rol
+     * @param  \App\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function show(Rol $rol)
+    public function show(Empresa $empresa)
     {
         //
     }
@@ -52,10 +58,10 @@ class RolController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Rol  $rol
+     * @param  \App\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rol $rol)
+    public function edit(Empresa $empresa)
     {
         //
     }
@@ -64,10 +70,10 @@ class RolController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Rol  $rol
+     * @param  \App\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rol $rol)
+    public function update(Request $request, Empresa $empresa)
     {
         //
     }
@@ -75,10 +81,10 @@ class RolController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Rol  $rol
+     * @param  \App\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rol $rol)
+    public function destroy(Empresa $empresa)
     {
         //
     }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Rol;
+use App\Sector;
 use Illuminate\Http\Request;
 
-class RolController extends Controller
+class SectorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        return view('rol.index');
+        $sectores = Sector::all();
+        return view('sector.index',compact('sectores'));
     }
 
     /**
@@ -24,7 +25,7 @@ class RolController extends Controller
      */
     public function create()
     {
-        //
+        return view('sector.create');
     }
 
     /**
@@ -35,16 +36,17 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Sector::create($request->all());
+        return redirect()->route('sector.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Rol  $rol
+     * @param  \App\Sector  $sector
      * @return \Illuminate\Http\Response
      */
-    public function show(Rol $rol)
+    public function show(Sector $sector)
     {
         //
     }
@@ -52,10 +54,10 @@ class RolController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Rol  $rol
+     * @param  \App\Sector  $sector
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rol $rol)
+    public function edit(Sector $sector)
     {
         //
     }
@@ -64,10 +66,10 @@ class RolController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Rol  $rol
+     * @param  \App\Sector  $sector
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rol $rol)
+    public function update(Request $request, Sector $sector)
     {
         //
     }
@@ -75,10 +77,10 @@ class RolController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Rol  $rol
+     * @param  \App\Sector  $sector
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rol $rol)
+    public function destroy(Sector $sector)
     {
         //
     }
