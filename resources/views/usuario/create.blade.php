@@ -12,6 +12,11 @@
         line-height: 2.3em;
         padding-left: 0.9em;
     }
+    .error-codigo{
+        color: #ff0000a3;
+        font-weight: bold;
+        display: none;
+    }
 </style>
 @endsection
 @section('title')
@@ -26,14 +31,15 @@
             <div class="card-body">
             <form method="POST" action="{{route('usuario.store')}}" >
                 @csrf
-                <div class="form-group">
+                <div class="form-group mb-0">
                     <label style="display: block; margin-bottom: 0px">Registro: </label>
                     <span class="nota mt-0" style="display: block;">Nota: ingrese el registro y dele Buscar en caso de que sea egresado</span>
                     <input name="registro" id="registro" type="number" placeholder="Ingrese el código" class="buscador">
                     <a href="#!" onclick="getEgresados()" class="btn btn-secondary">Buscar</a>
                 </div>
+                <span class="error-codigo"></span>
 
-                <div class="form-row">
+                <div class="form-row mt-2">
                     <div class="form-group col-md-4 col-12 col-sm-6">
                     <label>Nombre: </label>
                     <input name="nombre" class="form-control input-block clear-input" type="text" placeholder="Ingrese el nombre">
@@ -104,7 +110,15 @@
     url = "{{ route('user_api',':ID') }}";
 
     function setData(datas){
-        var tags = document.querySelectorAll('.input-block')
+        var tags = document.querySelectorAll('.input-block');
+        if(!datas['estado']){
+            showMessage(datas['mensaje']);
+            return;
+        }
+        
+        visibleInput(true);
+        document.getElementById('tipo').value = '1';
+
         tags.forEach((element)=>{
             switch(element.name){
                 case 'nombre':
@@ -120,16 +134,21 @@
             }
         });
     }
-
+    function sleep (time) {
+      return new Promise((resolve) => setTimeout(resolve, time));
+    }
     function getEgresados(){
         var input = document.getElementById('registro');
         console.log("enviando",input.value);
+        if(input.value.length == 0){
+            showMessage('Debe ingresar el código del egresado para realizar la búsqueda');
+            return;
+        }
+
         url_copy = url.replace(':ID',input.value);
         $.get(url_copy,function(rsp){
             clearAll();
             setData(rsp);
-            visibleInput(true);
-            document.getElementById('tipo').value = '1';
         });
     }
 
@@ -158,6 +177,14 @@
         var tags = document.querySelectorAll('.clear-input')
         tags.forEach((element)=>{
             element.value = '';
+        });
+    }
+    function showMessage(msg){
+        $( ".error-codigo" ).text(msg);
+        $( ".error-codigo" ).show(1000,function(){
+            sleep(5000).then(()=>{
+                $( ".error-codigo" ).hide(1000);
+            });
         });
     }
 </script>
