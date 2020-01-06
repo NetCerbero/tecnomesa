@@ -55,7 +55,7 @@ class RegimenController extends Controller
      * @param  \App\Regimen  $regimen
      * @return \Illuminate\Http\Response
      */
-    public function edit(Regimen $regimen)
+    public function edit($id)
     {
         $regimen = Regimen::find($id);
         return view('regimen.edit', compact('regimen'));
@@ -68,7 +68,7 @@ class RegimenController extends Controller
      * @param  \App\Regimen  $regimen
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Regimen $regimen)
+    public function update(Request $request, $id)
     {
         $regimen = Regimen::find($id);
         $regimen->update($request->all());
