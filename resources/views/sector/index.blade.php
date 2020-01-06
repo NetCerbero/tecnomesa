@@ -35,7 +35,9 @@
                                 <tr class="gradeX">
                                   <td>{{ $sector->id }}</td>
                                   <td>{{ $sector->sector }}</td>
-                                  <td>acciones</td>
+                                  <td>
+                                    <a class="badge badge-warning" href="{{route('sector.edit',$sector->id)}}"> editar </a>
+                                  </td>
                                 </tr>
                             @endforeach
                         </tbody>
