@@ -35,7 +35,7 @@
                                 <tr class="gradeX">
                                   <td>{{ $regimen->id }}</td>
                                   <td>{{ $regimen->tipo }}</td>
-                                  <td>acciones</td>
+                                  <td><a href="{{route('regimen.edit',$regimen->id)}}"> editar </a></td>
                                 </tr>
                             @endforeach
                         </tbody>
