@@ -63,7 +63,11 @@ class EmpresaController extends Controller
      */
     public function edit(Empresa $empresa)
     {
-        //
+        $empresa = Empresa::findOrFail($id);
+        $sectores = Sector::all();
+        $regimenes = Regimen::all();
+
+        return view('empresa.edit',compact('empresa','sectores','regimenes'));
     }
 
     /**
