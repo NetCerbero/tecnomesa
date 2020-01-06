@@ -10,19 +10,17 @@
     <div class="col">
         <!-- START card-->
         <div class="card card-default">
-            <div class="card-header">Registro de Usuarios</div>
+            <div class="card-header">Edicion regiménm</div>
             <div class="card-body">
-            <form method="POST" action="{{route('usuario.store')}}" >
+            <form method="POST" action="{{route('regimen.update', $regimen->id)}}" >
                 @csrf
-                <div class="form-row mt-2">
-                    <div class="form-group col-md-4 col-12 col-sm-6">
-                    <label>Nombre: </label>
-                    <input name="nombre" class="form-control input-block clear-input" type="text" placeholder="Ingrese el nombre">
+                @method('PUT')
+                <div class="form-group col">
+                    <label>Regimen: </label>
+                    <input name="tipo" class="form-control input-block clear-input" value="{{$regimen->tipo}}" type="text" placeholder="tipo">
                 </div>
-
-                <div class="form-group col-md-4 col-12 col-sm-6">
-                    <label>Apellido: </label>
-                    <input name="apellido" class="form-control input-block clear-input" type="text" placeholder="Ingrese el apellido">
+                <div class="d-flex justify-content-end col-sm-12">
+                    <input type="submit" class="btn btn-primary" value="Guardar cambios">
                 </div>
             </form>
 @endsection
