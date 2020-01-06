@@ -57,7 +57,8 @@ class RegimenController extends Controller
      */
     public function edit(Regimen $regimen)
     {
-        //
+        $regimen = Regimen::find($id);
+        return view('regimen.edit', compact('regimen'));
     }
 
     /**
@@ -69,7 +70,9 @@ class RegimenController extends Controller
      */
     public function update(Request $request, Regimen $regimen)
     {
-        //
+        $regimen = Regimen::find($id);
+        $regimen->update($request->all());
+        return redirect()->route('regimen.index');
     }
 
     /**
