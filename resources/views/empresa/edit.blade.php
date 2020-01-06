@@ -17,23 +17,23 @@
                 @method('PUT')
                 <div class="form-group col-md-6">
                     <label>Empresa: </label>
-                    <input name="nombre" class="form-control input-block clear-input" type="text" placeholder="Nombre de la empresa">
+                    <input name="nombre" class="form-control input-block clear-input" value="{{$empresa->nombre}}" type="text" placeholder="Nombre de la empresa">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label>Telefono: </label>
-                    <input name="telefono" class="form-control input-block clear-input" type="text" placeholder="Telefono">
+                    <input name="telefono" class="form-control input-block clear-input" value="{{$empresa->telefono}}"  type="text" placeholder="Telefono">
                 </div>
 
                 <div class="form-group col-12">
                     <label>Dirección: </label>
-                    <input name="direccion" class="form-control input-block clear-input" type="text" placeholder="Dirección">
+                    <input name="direccion" class="form-control input-block clear-input" value="{{$empresa->direccion}}" type="text" placeholder="Dirección">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label>Regimén: </label>
                     <select name="regimen_id" class="form-control">
-                        <option value="">Elija el regimén</option>
+                        <option value="{{$empresa->regimen->id}}">{{$empresa->regimen->tipo}}</option>
                         @foreach ($regimenes as $regimen)
                             <option value="{{ $regimen->id }}"> {{ $regimen->tipo }}</option>
                         @endforeach
@@ -43,7 +43,7 @@
                 <div class="form-group col-md-6">
                     <label>Sector: </label>
                     <select name="sector_id" id="" class="form-control">
-                        <option value="">Elija el sector</option>
+                        <option value="{{$empresa->sector->id}}">{{$empresa->sector->sector}}</option>
                         @foreach ($sectores as $sector)
                              <option value="{{ $sector->id }}"> {{ $sector->sector }}</option>
                         @endforeach
