@@ -61,7 +61,7 @@ class EmpresaController extends Controller
      * @param  \App\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empresa $empresa)
+    public function edit($id)
     {
         $empresa = Empresa::find($id);
         $sectores = Sector::all();
@@ -77,7 +77,7 @@ class EmpresaController extends Controller
      * @param  \App\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empresa $empresa)
+    public function update(Request $request,$id)
     {
         $empresa=Empresa::find($id);
         $empresa->update($request->all());

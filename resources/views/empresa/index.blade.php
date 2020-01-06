@@ -39,7 +39,7 @@
                                   <td>{{ $empresa->nombre }}</td>
                                   <td>{{ $empresa->sector->sector }}</td>
                                   <td>{{ $empresa->regimen->tipo }}</td>
-                                  <td>acciones</td>
+                                  <td><a class="badge badge-warning" href="{{route('empresa.edit',$empresa->id)}}"> editar </a></td>
                                 </tr>
                             @endforeach
                         </tbody>

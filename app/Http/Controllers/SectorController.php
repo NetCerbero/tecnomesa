@@ -57,9 +57,10 @@ class SectorController extends Controller
      * @param  \App\Sector  $sector
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sector $sector)
+    public function edit($id)
     {
-        //
+        $sector = Sector::find($id);
+        return view('sector.edit', compact('sector'));
     }
 
     /**
@@ -69,9 +70,11 @@ class SectorController extends Controller
      * @param  \App\Sector  $sector
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sector $sector)
+    public function update(Request $request, $id)
     {
-        //
+        $sector = Sector::find($id);
+        $sector->update($request->all());
+        return redirect()->route('sector.index');
     }
 
     /**

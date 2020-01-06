@@ -41,7 +41,7 @@
                                 <td>{{$user->apellido}}</td>
                                 <td>{{ $user->rol->nombre }}</td>
                                 <td>
-                                    <a href="{{route('usuario.edit',$user->id)}}"> editar </a>
+                                    <a class="badge badge-warning" href="{{route('usuario.edit',$user->id)}}"> editar </a>
                                 </td>
                             </tr>
                         @endforeach
