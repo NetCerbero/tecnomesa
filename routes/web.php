@@ -34,7 +34,10 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 	// 2
-	Route::resource('egresado','UserController');
+	Route::resource('egresado','GraduacionController');
+	Route::get('egresado/data/user/{reg}','GraduacionController@getInfoUser')->name('graduacion_api');
+
+
 	Route::resource('avance','UserController');
 	Route::resource('asignacion','UserController');
 	Route::resource('evaluacion','PermisoController');

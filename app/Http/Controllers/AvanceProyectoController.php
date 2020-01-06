@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\AvanceProyecto;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\User;
-use Auth;
-use App\Rol;
 
-class UserController extends Controller
+class AvanceProyectoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('usuario.index',compact('users'));
+        //
     }
 
     /**
@@ -28,8 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Rol::all();
-        return view('usuario.create', compact('roles'));
+        //
     }
 
     /**
@@ -40,19 +35,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request['password'] = Hash::make($request->password);
-        User::create($request->all());
-        return redirect()->route('usuario.index');
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\AvanceProyecto  $avanceProyecto
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(AvanceProyecto $avanceProyecto)
     {
         //
     }
@@ -60,10 +52,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\AvanceProyecto  $avanceProyecto
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(AvanceProyecto $avanceProyecto)
     {
         //
     }
@@ -72,10 +64,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\AvanceProyecto  $avanceProyecto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, AvanceProyecto $avanceProyecto)
     {
         //
     }
@@ -83,26 +75,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\AvanceProyecto  $avanceProyecto
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(AvanceProyecto $avanceProyecto)
     {
         //
-    }
-
-    public function getUserData($reg){
-        $data = Auth::user()->userDataUagrm($reg);
-        $rsp = [];
-        if(is_array($data)){
-            $rsp['nombre'] = $data['datos']['nombre'];
-            $rsp['genero'] = $data['datos']['sexo'];
-            $rsp['estado'] = true;
-        }else{
-            $rsp['estado'] = false;
-            $rsp['mensaje'] = $data;
-        }
-
-        return $rsp;
     }
 }

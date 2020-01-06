@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use GuzzleHttp\Client;
 
 class User extends Authenticatable
 {
@@ -57,6 +58,24 @@ class User extends Authenticatable
             }
         }
         return $rsp;
+    }
+
+    public function userDataUagrm($reg){
+        $client = new Client([
+                'base_uri' => "https://tiluchi.uagrm.edu.bo/",
+                'sync'     => true,
+        ]);
+
+        $headers = [
+            'apikey' => '734b2b111sdfefb61e30de3a7361e30de3a736e30de3a736a8af1c2a8af1c21734b2b111sdfefb61',
+            'Accept'        => 'application/json',
+        ];
+        $response = $client->request('GET',"titulados/$reg/",[
+                    'headers' => $headers
+                ]);
+        $body = $response->getBody()->getContents();
+        $data = json_decode($body, true);
+        return $data;
     }
 
 }

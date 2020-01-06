@@ -87,7 +87,7 @@
 
                 <div class="form-group col-md-4 col-12 col-sm-6">
                     <label>Nombre del rol: </label>
-                    <select name="role_id" id=""  class="form-control clear-input">
+                    <select name="rol_id" id=""  class="form-control clear-input">
                         <option value="">Elija el rol</option>
                         @foreach($roles as $rol)
                             <option value="{{$rol->id}}">{{$rol->nombre}}</option>
@@ -166,7 +166,7 @@
                 visibleInput(true);
             }else{
                 visibleInput(false);
-                clearAll();
+                //clearAll();
             }
         }else{
             console.log("no cambio el tipo");
