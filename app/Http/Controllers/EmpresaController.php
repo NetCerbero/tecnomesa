@@ -63,7 +63,7 @@ class EmpresaController extends Controller
      */
     public function edit(Empresa $empresa)
     {
-        $empresa = Empresa::findOrFail($id);
+        $empresa = Empresa::find($id);
         $sectores = Sector::all();
         $regimenes = Regimen::all();
 
@@ -79,7 +79,9 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, Empresa $empresa)
     {
-        //
+        $empresa=Empresa::find($id);
+        $empresa->update($request->all());
+        return redirect()->route('empresa.index');
     }
 
     /**
