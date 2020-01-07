@@ -7,12 +7,9 @@
 <link rel="stylesheet" href="{{ asset('vendor/datatables.net-responsive-bs/css/responsive.bootstrap.css') }}"><!-- =============== BOOTSTRAP STYLES ===============-->
 @endsection
 @section('title')
-<h3>Egresado - Graduación</h3>
+<h3>Avance de proyecto</h3>
 @endsection
 @section('content')
-<div class="d-flex justify-content-end my-2">
-	<a class="btn btn-primary" href="{{ route('egresado.create') }}">Registrar</a>
-</div>
 <div class="card">
                   <div class="card-header">
                     <div class="card-title">
@@ -29,11 +26,9 @@
                      <table class="table table-striped my-4 w-100" id="datatable1">
                         <thead>
                            <tr>
-                              <th>Registro</th>
-                              <th>Nombre</th>
-                              <th>Modalidad</th>
+                              <th>Egresado</th>
+                              <th>Título</th>
                               <th>Tutor</th>
-                              <th>Titulo</th>
                               <th>Area</th>
                               <th>Acciones</th>
                            </tr>
@@ -44,40 +39,16 @@
 					         		$datos = $graduacion->egresado->userDataUagrm($graduacion->egresado->registro);
 					         	@endphp
                                 <tr class="gradeX">
-                                  <td>{{ $graduacion->egresado->registro }}</td>
-                                  <td>{{ $datos['datos']['nombre'] }}</td>
+                                  <td>{{ $datos['datos']['nombre'].' - '.$graduacion->egresado->registro}}</td>
+                                  <td>{{ $graduacion->titulo }}</td>
+                                  <td>{{ $graduacion->tutor->nombre. ' ' .$graduacion->tutor->apellido.' - '.$graduacion->tutor->registro }}</td>
+                                  
+                                  <td>{{ $graduacion->area->area }}</td>
                                   <td>
-                                  	@if ($graduacion->tipo == 1)
-						            	Graduación directa
-						            @elseif($graduacion->tipo == 2)
-						            	Examen de grado
-						            @else
-						            	Tesis/Trabajo Final/Trabajo Dirigido
-						            @endif
+                                    <a class="badge badge-warning" href="{{ route('avance.edit',$graduacion->id) }}">Registrar avance</a>
+                                    <a class="badge badge-secondary" href="{{ route('avance.show',$graduacion->id) }}">Ver avance</a>
+                                    <a class="badge badge-primary" href="{{ route('avance_revisar',$graduacion->id) }}">Revisar</a>
                                   </td>
-                                  <td>
-                                  	@if ($graduacion->tipo == 3)
-                                  		{{ $graduacion->tutor->nombre. ' ' .$graduacion->tutor->apellido.' - '.$graduacion->tutor->registro }}
-                                  	@else
-                                  		---------------------------
-                                  	@endif
-                                  	
-                                  </td>
-                                  <td>
-                                  	@if ($graduacion->tipo == 3)
-                                  		{{ $graduacion->titulo }}
-                                  	@else
-                                  		---------------------------
-                                  	@endif
-                                  </td>
-                                  <td>
-                                  	@if ($graduacion->tipo == 1)
-                                  		---------
-                                  	@else
-                                  		{{ $graduacion->area->area }}
-                                  	@endif
-                                  </td>
-                                  <td><a class="badge badge-warning" href="{{route('egresado.edit',$graduacion->id)}}"> editar </a></td>
                                 </tr>
                             @endforeach
                         </tbody>

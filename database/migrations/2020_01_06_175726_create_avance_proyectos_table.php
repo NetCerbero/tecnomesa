@@ -18,7 +18,7 @@ class CreateAvanceProyectosTable extends Migration
             $table->text('descipcion')->nullable();
             $table->string('file')->nullable();
             $table->text('comentario')->nullable();;
-            $table->unsignedBigInteger('estado_id');
+            $table->unsignedBigInteger('estado_id')->nullable();
             $table->unsignedBigInteger('guia_id');
             $table->unsignedBigInteger('trabajo_id');
 

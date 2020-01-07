@@ -78,4 +78,13 @@ class User extends Authenticatable
         return $data;
     }
 
+    public function graduacion(){
+        return $this->hasOne('App\User', 'egresado_id');
+    }
+
+    //tesis | trabajo dirigido
+    public function trabajo(){
+        return $this->hasMany('App\Graduacion','guia_id','id');
+    }
+
 }

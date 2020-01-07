@@ -15,15 +15,23 @@ class Graduacion extends Model
 
 
     public function avanceProyecto(){
-
+        return $this->hasMany('App\AvanceProyecto','trabajo_id','id');
     }
 
     public function evaluacion(){
 
     }
 
-    public function user(){
-    	
+    public function egresado(){
+         return $this->belongsTo('App\User','egresado_id');
+    }
+
+    public function tutor(){
+        return $this->belongsTo('App\User','guia_id');
+    }
+
+    public function area(){
+        return $this->belongsTo('App\Area','area_id');
     }
 
 }

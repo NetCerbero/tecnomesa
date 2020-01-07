@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\AvanceProyecto;
+use App\Graduacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AvanceProyectoController extends Controller
 {
@@ -14,7 +16,8 @@ class AvanceProyectoController extends Controller
      */
     public function index()
     {
-        //
+        $graduaciones = Graduacion::all()->where('tipo','3');
+        return view('avanceproyecto.index',compact('graduaciones'));
     }
 
     /**
@@ -24,7 +27,7 @@ class AvanceProyectoController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +38,13 @@ class AvanceProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('file')) {
+            $path = Storage::putFile('public/avance', $request->file('file'));
+            $data = $request->all();
+            $data['file'] = $path;
+            AvanceProyecto::create($data);
+            return redirect()->route('avance.index');
+        }
     }
 
     /**
@@ -44,9 +53,10 @@ class AvanceProyectoController extends Controller
      * @param  \App\AvanceProyecto  $avanceProyecto
      * @return \Illuminate\Http\Response
      */
-    public function show(AvanceProyecto $avanceProyecto)
+    public function show( $id )
     {
-        //
+        $avances = Graduacion::find($id);
+        return view('avanceproyecto.show',compact('avances'));
     }
 
     /**
@@ -55,9 +65,15 @@ class AvanceProyectoController extends Controller
      * @param  \App\AvanceProyecto  $avanceProyecto
      * @return \Illuminate\Http\Response
      */
-    public function edit(AvanceProyecto $avanceProyecto)
+    public function edit($id)
     {
-        //
+        $graduacion = Graduacion::find($id);
+        return view('avanceproyecto.create',compact('id','graduacion'));
+    }
+
+    public function revisar($id){
+        $graduacion = Graduacion::find($id);
+        return view('avanceproyecto.edit',compact('id','graduacion'));
     }
 
     /**
@@ -67,9 +83,11 @@ class AvanceProyectoController extends Controller
      * @param  \App\AvanceProyecto  $avanceProyecto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AvanceProyecto $avanceProyecto)
+    public function update(Request $request,  $id)
     {
-        //
+        $avance = AvanceProyecto::find($id);
+
+        return redirect()->route('avance.index');
     }
 
     /**
@@ -78,8 +96,20 @@ class AvanceProyectoController extends Controller
      * @param  \App\AvanceProyecto  $avanceProyecto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AvanceProyecto $avanceProyecto)
+    public function destroy( $id )
     {
         //
     }
+
+    // public function getDownload()
+    // {
+    //     //PDF file is stored under project/public/download/info.pdf
+    //     $file= public_path(). "/download/info.pdf";
+
+    //     $headers = array(
+    //               'Content-Type: application/pdf',
+    //             );
+
+    //     return Response::download($file, 'filename.pdf', $headers);
+    // }
 }
