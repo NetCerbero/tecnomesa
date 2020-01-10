@@ -13,7 +13,7 @@ class Estadisticas extends Controller
      */
     public function index()
     {
-        //
+        return view('estadistica.estadisticas2018');
     }
 
     /**

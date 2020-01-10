@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Empleado;
 use Illuminate\Http\Request;
+use App\NivelPuesto;
+use App\Area;
+use App\Empresa;
+use App\Titulado;
 
 class EmpleadoController extends Controller
 {
@@ -14,7 +18,8 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        //
+        $empleados = Empleado::all();
+        return view('empleado.index',compact('empleados'));
     }
 
     /**
@@ -24,7 +29,11 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        //
+        $empresas = Empresa::all();
+        $nivelPuestos = NivelPuesto::all();
+        $titulados = Titulado::all();
+        $areas = Area::all()->where('tipo',2);
+        return view('empleado.create',compact('empresas','nivelPuestos','areas','titulados'));
     }
 
     /**
@@ -35,7 +44,8 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Empleado::create($request->all());
+        return redirect()->route('inflaboral.index');
     }
 
     /**

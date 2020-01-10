@@ -29,12 +29,24 @@
         <div class="card card-default">
             <div class="card-header">Registro postgrado</div>
             <div class="card-body">
-            <form method="POST" action="{{route('postgrado.store')}}" class="form-row" enctype="multipart/form-data">
+            <form method="POST" action="{{route('inflaboral.store')}}" class="form-row" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group col-12">
-                    <label>Titulo: </label>
-                    <input  name="titulo" type="text" class="form-control tesis">
+                    <label>Funcion que desempeña: </label>
+                    <input  name="funcion" type="text" class="form-control tesis">
+                    
+                </div>
+
+                <div class="form-group col-12">
+                    <label>Conocimiento requerido: </label>
+                    <input  name="conocimiento" type="text" class="form-control tesis">
+                    
+                </div>
+
+                <div class="form-group col-12">
+                    <label>Tecnologia: </label>
+                    <input  name="tecnologia" type="text" class="form-control tesis">
                     
                 </div>
                 
@@ -52,14 +64,40 @@
                 </div>
 
                 <div class="form-group col-12 col-md-6">
-                    <label class="mb-0">Grado: </label>
-                    <select name="grado_id" id="" class="chosen-select form-control" required>
-                        <option value="">Elija el tribunal</option>
-                        @foreach ($grados as $grado)
+                    <label class="mb-0">Area: </label>
+                    <select name="area_id" id="" class="chosen-select form-control" required>
+                        <option value="">Elija el area</option>
+                        @foreach ($areas as $area)
                             {{-- @php
                                 $dato = Auth::user()->userDataUagrm($egresado->registro);
                             @endphp --}}
-                            <option value="{{ $grado->id }}">{{ $grado->grado }}</option>
+                            <option value="{{ $area->id }}">{{ $area->area }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group col-12 col-md-6">
+                    <label class="mb-0">Grado: </label>
+                    <select name="empresa_id" id="" class="chosen-select form-control" required>
+                        <option value="">Elija la empresa</option>
+                        @foreach ($empresas as $empresa)
+                            {{-- @php
+                                $dato = Auth::user()->userDataUagrm($egresado->registro);
+                            @endphp --}}
+                            <option value="{{ $empresa->id }}">{{ $empresa->nombre }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group col-12 col-md-6">
+                    <label class="mb-0">Nivel de puesto: </label>
+                    <select name="nivel_id" id="" class="chosen-select form-control" required>
+                        <option value="">Elija el tribunal</option>
+                        @foreach ($nivelPuestos as $nivelPuesto)
+                            {{-- @php
+                                $dato = Auth::user()->userDataUagrm($egresado->registro);
+                            @endphp --}}
+                            <option value="{{ $nivelPuesto->id }}">{{ $nivelPuesto->nivel}}</option>
                         @endforeach
                     </select>
                 </div>

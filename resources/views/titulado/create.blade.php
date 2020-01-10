@@ -34,7 +34,7 @@
 
                 <div class="form-group col-6">
                     <label>Año titulacion </label>
-                    <input  name="anio_titulacion" type="number" class="form-control tesis" value="Ingrese el año de titulacion">
+                    <input  name="anio_titulacion" type="number" class="form-control tesis" placeholder="el titulo">
                 
                     
                 </div>

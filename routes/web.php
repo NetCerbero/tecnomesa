@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
 	// 3
 	Route::resource('titulado','TituladoController');
 	Route::resource('postgrado','PostgradoController');
-	Route::resource('inflaboral','PermisoController');
+	Route::resource('inflaboral','EmpleadoController');
 
 	Route::resource('estadistica','Estadisticas');
 });

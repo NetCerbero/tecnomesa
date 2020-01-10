@@ -10,8 +10,8 @@ class Postgrado extends Model
     	'titulo','grado_id','titulado_id'
     ];
 
-    public function grado(){
-    	return $this->hasOne('App\User', 'id','grado_id');
+    public function gradoTitulo(){
+    	return $this->hasOne('App\GradoAcademico', 'id','grado_id');
     }
 
     public function titulado(){
