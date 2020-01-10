@@ -14,7 +14,6 @@
             <div class="card-body">
             <form method="POST" action="{{route('privilegio.store')}}">
                 @csrf
-                @PUT
                 <div class="form-group">
                     <label>Rol</label>
                     <select name="rol" class="form-control">

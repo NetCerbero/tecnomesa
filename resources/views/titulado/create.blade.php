@@ -31,30 +31,23 @@
             <div class="card-body">
             <form method="POST" action="{{route('titulado.store')}}" class="form-row" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group col-6">
-                    <label>Fecha inicio: </label>
-                    <input  name="finicio" type="date" class="form-control tesis  examen" required>
-                </div>
-                
 
                 <div class="form-group col-6">
-                    <label>Fecha defensa (oral): </label>
-                    <input  name="fdefensa" type="date" class="form-control tesis examen" required>
-                </div>
-
-                <div class="form-group col-6">
-                    <label>Número de resolución: </label>
-                    <input  name="nresolucion" type="text" class="form-control tesis" value="Ingrese el codigo de resolucion">
+                    <label>Año titulacion </label>
+                    <input  name="anio_titulacion" type="number" class="form-control tesis" value="Ingrese el año de titulacion">
                 
                     
                 </div>
                 
                 <div class="form-group col-12">
-                    <label class="mb-0">Tribunal: </label>
-                    <select name="tribunal_id[]" id="" class="chosen-select form-control" required>
+                    <label class="mb-0">Lista de egresados: </label>
+                    <select name="egresado_id" id="" class="chosen-select form-control" required>
                         <option value="">Elija el tribunal</option>
                         @foreach ($egresados as $egresado)
-                            <option value="{{ $egresado->id }}">{{ $egresado->nombre.' '.$egresado->apellido.' - '.$egresado->registro }}</option>
+                            @php
+                                $dato = Auth::user()->userDataUagrm($egresado->registro);
+                            @endphp
+                            <option value="{{ $egresado->id }}">{{ $dato['datos']['nombre'].' - '.$egresado->registro }}</option>
                         @endforeach
                     </select>
                 </div>

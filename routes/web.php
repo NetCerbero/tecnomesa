@@ -50,4 +50,6 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('titulado','TituladoController');
 	Route::resource('postgrado','PermisoController');
 	Route::resource('inflaboral','PermisoController');
+
+	Route::resource('estadistica','Estadisticas');
 });
