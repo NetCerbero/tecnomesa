@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Rol;
-use App\Cu;
-class PermisoController extends Controller
+
+class Estadisticas extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class PermisoController extends Controller
      */
     public function index()
     {
-        $roles = Rol::all();
-        return view('privilegio.index',compact('roles'));
+        //
     }
 
     /**
@@ -25,9 +23,7 @@ class PermisoController extends Controller
      */
     public function create()
     {
-        $roles = Rol::all();
-        $cus = Cu::all();
-        return view('privilegio.create',compact('roles','cus'));
+        //
     }
 
     /**
@@ -38,17 +34,7 @@ class PermisoController extends Controller
      */
     public function store(Request $request)
     {
-        $rol = Rol::find($request['rol']);
-        
-        foreach($request['data'] as $key => $value ){
-            $rol->cu()->syncWithoutDetaching(
-                [
-                    $key => $value
-                ]
-            );
-        }
-
-        return redirect()->route('privilegio.index');
+        //
     }
 
     /**
@@ -70,9 +56,7 @@ class PermisoController extends Controller
      */
     public function edit($id)
     {
-        $rol = Rol::findOrFail($id);
-        $cus = Cu::all();
-        return view('privilegio.edit',compact('rol','cus'));
+        //
     }
 
     /**
@@ -84,16 +68,7 @@ class PermisoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rol = Rol::find($id);
-        
-        foreach($request['data'] as $key => $value ){
-            $rol->cu()->syncWithoutDetaching(
-                [
-                    $key => $value
-                ]
-            );
-        }
-        return redirect()->route('privilegio.index');
+        //
     }
 
     /**

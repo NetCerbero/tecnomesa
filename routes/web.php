@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('evaluacion','EvaluacionController');
 	Route::get('evaluacion/crear/{id}','EvaluacionController@crear')->name('evaluacion_nota');
 	// 3
-	Route::resource('titulado','PermisoController');
+	Route::resource('titulado','TituladoController');
 	Route::resource('postgrado','PermisoController');
 	Route::resource('inflaboral','PermisoController');
 });
