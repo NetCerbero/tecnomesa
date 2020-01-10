@@ -122,7 +122,7 @@
 		                    </select>
 		                </div>
 
-		                <input type="text" name="egresado_id" id="egresado_id" placeholder="Identificador del egresado" class="clear-input-search">
+		                <input type="hidden" name="egresado_id" id="egresado_id" placeholder="Identificador del egresado" class="clear-input-search">
 		            </div>
 
 		            <div class="d-flex justify-content-end col-sm-12">

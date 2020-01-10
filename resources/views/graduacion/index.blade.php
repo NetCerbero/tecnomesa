@@ -35,7 +35,7 @@
                               <th>Tutor</th>
                               <th>Titulo</th>
                               <th>Area</th>
-                              <th>Acciones</th>
+                              {{-- <th>Acciones</th> --}}
                            </tr>
                         </thead>
                         <tbody>
@@ -77,7 +77,7 @@
                                   		{{ $graduacion->area->area }}
                                   	@endif
                                   </td>
-                                  <td><a class="badge badge-warning" href="{{route('egresado.edit',$graduacion->id)}}"> editar </a></td>
+                                  {{-- <td><a class="badge badge-warning" href="{{route('egresado.edit',$graduacion->id)}}"> editar </a></td> --}}
                                 </tr>
                             @endforeach
                         </tbody>

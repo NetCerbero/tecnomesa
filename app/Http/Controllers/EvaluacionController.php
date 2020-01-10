@@ -32,12 +32,15 @@ class EvaluacionController extends Controller
                 $data['tribunal'][] =  $value->nombre.' '.$value->apellido.' - '.$value->registro;
 
                 if ($value->pivot->eva1 ) {
-                    $data['evaluacion'][] = $value->pivot->eva1. ' - '. $value->pivot->eva2;
-                    if(!$value->pivot->eva2){
-                        $nota = $nota + ($value->pivot->eva1 + $value->pivot->eva2)/2;
+                    $nota = "";
+                    if($value->pivot->eva2){
+                        $nota = $value->pivot->eva1. ' - '. $value->pivot->eva2;
+                        $notaEscrita = $notaEscrita + ($value->pivot->eva1 + $value->pivot->eva2)/2;
                     }else{
+                        $notaEscrita = $value->pivot->eva1;
                         $nota = $value->pivot->eva1;
                     }
+                    $data['evaluacion'][] = $nota;
 
                 }else{
                     $data['evaluacion'][] = 'Aun no ingresado la nota';
@@ -63,7 +66,7 @@ class EvaluacionController extends Controller
                 $final = ($notaEscrita/2 )*0.6+$notaOral * 0.4;
             }else{
                 $data['tipo'] = 'Trabajo dirigido/Tesis';
-                $final = ($notaEscrita/3 )*0.6+$notaOral * 0.4;
+                $final = (($notaEscrita/3)*60)/100 + (($notaOral/3)*40)/100;
             }
 
             $uagrm = Auth::user()->userDataUagrm($eva->graduacion->egresado->registro);
