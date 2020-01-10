@@ -37,7 +37,8 @@ class TituladoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Titulado::create($request->all());
+        return redirect()->route('titulado.index');
     }
 
     /**

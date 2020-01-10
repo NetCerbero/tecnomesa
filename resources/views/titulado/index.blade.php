@@ -30,6 +30,7 @@
                         <thead>
                            <tr>
                               <th>Registro</th>
+                              <th>Titulado</th>
                               <th>Modalidad</th>
                               <th>Año titulacion</th>
                               {{-- <th>Acciones</th> --}}

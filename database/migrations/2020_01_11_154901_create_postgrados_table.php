@@ -18,6 +18,9 @@ class CreatePostgradosTable extends Migration
             $table->string('titulo');
 
             $table->unsignedBigInteger('grado_id');
+            $table->unsignedBigInteger('titulado_id');
+            $table->foreign('titulado_id')->references('id')->on('titulados');
+            
             $table->foreign('grado_id')->references('id')->on('grado_academicos');
 
             $table->timestamps();

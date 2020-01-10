@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Postgrado;
 use Illuminate\Http\Request;
-
+use App\GradoAcademico;
 class PostgradoController extends Controller
 {
     /**
@@ -14,7 +14,9 @@ class PostgradoController extends Controller
      */
     public function index()
     {
-        //
+
+        $postgrados = Postgrado::all();
+        return view('postgrado.index',compact('postgrados'));
     }
 
     /**
@@ -24,7 +26,8 @@ class PostgradoController extends Controller
      */
     public function create()
     {
-        //
+        $grados = GradoAcademico::all();
+        return view('postgrado.create',compact('grado'));
     }
 
     /**
