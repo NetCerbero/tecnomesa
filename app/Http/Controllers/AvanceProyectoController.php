@@ -55,8 +55,8 @@ class AvanceProyectoController extends Controller
      */
     public function show( $id )
     {
-        $avances = Graduacion::find($id);
-        return view('avanceproyecto.show',compact('avances'));
+        $graduacion = Graduacion::find($id);
+        return view('avanceproyecto.show',compact('graduacion'));
     }
 
     /**
@@ -86,6 +86,7 @@ class AvanceProyectoController extends Controller
     public function update(Request $request,  $id)
     {
         $avance = AvanceProyecto::find($id);
+        $avance->update($request->all());
 
         return redirect()->route('avance.index');
     }

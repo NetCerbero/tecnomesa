@@ -19,7 +19,7 @@ class Graduacion extends Model
     }
 
     public function evaluacion(){
-
+        return $this->hasOne('App\Evaluacion', 'graduacion_id');
     }
 
     public function egresado(){

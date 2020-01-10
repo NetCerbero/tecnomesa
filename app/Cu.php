@@ -11,7 +11,7 @@ class Cu extends Model
     ];
 
     public function rol(){
-        return $this->belongsToMany('App\Rol','permiso','cu_id','rol_id')->withPivot('rol_id', 'cu_id','leer','escribir','eliminar','editar')->withTimestamps();;
+        return $this->belongsToMany('App\Rol','permiso','cu_id','rol_id')->withPivot('rol_id', 'cu_id','leer','escribir','eliminar','editar')->withTimestamps();
     }
 
     public function paquete(){

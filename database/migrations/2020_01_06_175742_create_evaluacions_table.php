@@ -20,7 +20,7 @@ class CreateEvaluacionsTable extends Migration
             $table->date('ffinal')->nullable();
             $table->date('fdefensa')->nullable();//oral
             //*****************************************************
-            $table->string('nresolucion');
+            $table->string('nresolucion')->nullable();
             $table->unsignedBigInteger('graduacion_id');
 
             $table->foreign('graduacion_id')->references('id')->on('graduacions');

@@ -51,10 +51,13 @@ class User extends Authenticatable
         foreach ($cus as $cu) {
             $paquete = $cu->paquete;
             // verificar los permisos para determinar si se muestra o no el paquete y el cu
-            if(array_key_exists($paquete->nombre,$rsp)){
-                $rsp[$paquete->nombre]['cus'][] = $cu;
-            }else{
-                $rsp[$paquete->nombre] = ['icon' => $paquete->icon, 'id' => $paquete->id, 'cus' => [$cu]];
+
+            if($cu->pivot->escribir || $cu->pivot->leer || $cu->pivot->eliminar || $cu->pivot->editar){
+                if(array_key_exists($paquete->nombre,$rsp)){
+                    $rsp[$paquete->nombre]['cus'][] = $cu;
+                }else{
+                    $rsp[$paquete->nombre] = ['icon' => $paquete->icon, 'id' => $paquete->id, 'cus' => [$cu]];
+                }
             }
         }
         return $rsp;
@@ -87,4 +90,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Graduacion','guia_id','id');
     }
 
+    public function evaluacion(){
+        return $this->belongsToMany('App\Evaluacion','tribunal_evaluacions','tribunal_id','evaluacion_id')->withPivot('eva1','eva2','observacion','oral','tribunal_id','evaluacion_id')->withTimestamps();
+    }
 }

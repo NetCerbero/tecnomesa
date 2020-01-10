@@ -111,6 +111,7 @@
                   <li class="nav-heading "><span data-localize="sidebar.heading.HEADER">Main Navigation</span></li>
                   @php
                      $menu = Auth::user()->menu();
+                     //dd($menu);
                   @endphp
               
                    @foreach($menu as $key => $item)

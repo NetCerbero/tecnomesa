@@ -41,9 +41,11 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('avance','AvanceProyectoController');
 	Route::get('avance/revisar/{id}','AvanceProyectoController@revisar')->name('avance_revisar');
 
-	Route::resource('asignacion','UserController');
-	Route::resource('evaluacion','PermisoController');
-	
+	Route::resource('asignacion','TribunalEvaluacionController');
+	Route::get('asignacion/evaluacion/{id}','TribunalEvaluacionController@evaluacion')->name('asignacion_tutor');
+
+	Route::resource('evaluacion','EvaluacionController');
+	Route::get('evaluacion/crear/{id}','EvaluacionController@crear')->name('evaluacion_nota');
 	// 3
 	Route::resource('titulado','PermisoController');
 	Route::resource('postgrado','PermisoController');
