@@ -28,7 +28,7 @@
          <div class="card card-flat">
             <div class="card-header text-center bg-dark"><a href="#"><img class="block-center rounded" src="img/logo.png" alt="Image"></a></div>
             <div class="card-body">
-               <p class="text-center py-2">SIGN IN TO CONTINUE.</p>
+               <p class="text-center py-2">Sistema de egresados - Facultad de Ciencias Economicas</p>
                <form action="{{ route('login') }}" method="POST" class="mb-3" id="loginForm" novalidate>
                     @csrf
                   <div class="form-group">
@@ -51,12 +51,8 @@
                         </div>
                      </div>
                   </div>
-                  <div class="clearfix">
-                     <div class="checkbox c-checkbox float-left mt-0"><label><input type="checkbox" value="" name="remember"><span class="fa fa-check"></span> Remember Me</label></div>
-                     <div class="float-right"><a class="text-muted" href="recover.html">Forgot your password?</a></div>
                   </div><button class="btn btn-block btn-primary mt-3" type="submit">Login</button>
                </form>
-               <p class="pt-3 text-center">Need to Signup?</p><a class="btn btn-block btn-secondary" href="register.html">Register Now</a>
             </div>
          </div><!-- END card-->
          <div class="p-3 text-center"><span class="mr-2">&copy;</span><span>2019</span><span class="mr-2">-</span><span>Angle</span><br><span>Bootstrap Admin Template</span></div>
