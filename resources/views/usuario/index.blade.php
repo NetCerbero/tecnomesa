@@ -35,10 +35,25 @@
                     </thead>
                     <tbody>
                         @foreach($users as $user)
+                                @if ($user->tipo == 1)
+                                    @php
+                                        $datos = Auth::user()->userDataUagrm($user->registro);
+                                    @endphp
+                                @endif
                             <tr>
                                 <td>{{$user->id}}</td>
-                                <td>{{$user->nombre}}</td>
-                                <td>{{$user->apellido}}</td>
+                                @if ($user->tipo == 1)
+                                    <td>{{$datos['datos']['nombre']}}</td>
+                                @else
+                                    <td>{{$user->nombre}}</td>
+                                @endif
+
+                                @if ($user->tipo == 1)
+                                    <td> ------ </td>
+                                @else
+                                    <td>{{$user->apellido}}</td>
+                                @endif
+                                 
                                 <td>{{ $user->rol->nombre }}</td>
                                 <td>
                                     <a class="badge badge-warning" href="{{route('usuario.edit',$user->id)}}"> editar </a>

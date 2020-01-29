@@ -42,7 +42,7 @@
           					         	@endphp
                                 <tr class="gradeX">
                                   <td>{{ $datos['datos']['nombre'] }}</td>
-                                  <td>{{ $empleado->empresa->empresa }}</td>
+                                  <td>{{ $empleado->empresa->nombre }}</td>
                                   <td>{{ $empleado->area->area }}</td>
                                   <td>{{ $empleado->nivelPuesto->nivel }}</td>
                                   {{-- <td><a class="badge badge-warning" href="{{route('egresado.edit',$graduacion->id)}}"> editar </a></td> --}}
