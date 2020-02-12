@@ -35,9 +35,11 @@
                                 <tr class="gradeX">
                                   <td>{{ $sector->id }}</td>
                                   <td>{{ $sector->sector }}</td>
-                                  <td>
+                                  <td><a class="badge badge-secondary" href="{{route('sector.show',$sector->id)}}"> visualizar </a></td>
+                                  <td>  
                                     <a class="badge badge-warning" href="{{route('sector.edit',$sector->id)}}"> editar </a>
                                   </td>
+                                  <td> <a class="badge badge-danger" href="{{route('sector.delete',$sector->id)}}"> eliminar </a></td>
                                 </tr>
                             @endforeach
                         </tbody>
