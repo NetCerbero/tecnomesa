@@ -46,9 +46,10 @@ class SectorController extends Controller
      * @param  \App\Sector  $sector
      * @return \Illuminate\Http\Response
      */
-    public function show(Sector $sector)
+    public function show($id)
     {
-        //
+        $sector = Sector::FindOrFail($id);
+        return view ('sector.show',compact('sector'));
     }
 
     /**
@@ -83,8 +84,9 @@ class SectorController extends Controller
      * @param  \App\Sector  $sector
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sector $sector)
+    public function destroy($id)
     {
-        //
+        Sector::destroy($id);
+        return redirect()->route('sector.index');
     }
 }
