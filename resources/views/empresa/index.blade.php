@@ -39,7 +39,9 @@
                                   <td>{{ $empresa->nombre }}</td>
                                   <td>{{ $empresa->sector->sector }}</td>
                                   <td>{{ $empresa->regimen->tipo }}</td>
+                                  <td><a class="badge badge-secondary" href="{{route('empresa.show',$empresa->id)}}"> visualizar </a></td>
                                   <td><a class="badge badge-warning" href="{{route('empresa.edit',$empresa->id)}}"> editar </a></td>
+                                  <td><a class="badge badge-danger" href="{{route('empresa.delete',$empresa->id)}}"> eliminar </a></td> 
                                 </tr>
                             @endforeach
                         </tbody>
