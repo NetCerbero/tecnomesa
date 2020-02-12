@@ -44,9 +44,10 @@ class RegimenController extends Controller
      * @param  \App\Regimen  $regimen
      * @return \Illuminate\Http\Response
      */
-    public function show(Regimen $regimen)
+    public function show($id)
     {
-        //
+        $regimen = Regimen::find($id);
+        return view('regimen.edit', compact('regimen'));
     }
 
     /**
@@ -81,8 +82,9 @@ class RegimenController extends Controller
      * @param  \App\Regimen  $regimen
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Regimen $regimen)
+    public function destroy($id)
     {
-        //
+        Regimen::destroy($id);
+        return redirect()->route('regimen.index');
     }
 }
