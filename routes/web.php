@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('regimenDelete/{id}','RegimenController@destroy')->name('regimen.delete');
     
 	Route::resource('sector','SectorController');
+    Route::get('sectorShow/{id}','SectorController@show')->name('sector.show');
+	Route::get('sectorDelete/{id}','SectorController@destroy')->name('sector.delete');
 
 	Route::resource('privilegio','PermisoController');
 	Route::resource('rol','RolController');
