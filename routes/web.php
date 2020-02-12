@@ -26,6 +26,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('usuario/data/user/{reg}','UserController@getUserData')->name('user_api');
 
 	Route::resource('empresa','EmpresaController');
+    Route::get('empresaShow/{id}','EmpresaController@show')->name('empresa.show');
+    Route::get('empresaDelete/{id}','EmpresaController@destroy')->name('empresa.delete');
+    
 	Route::resource('regimen','RegimenController');
 	Route::resource('sector','SectorController');
 
