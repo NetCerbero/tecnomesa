@@ -30,6 +30,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('empresaDelete/{id}','EmpresaController@destroy')->name('empresa.delete');
     
 	Route::resource('regimen','RegimenController');
+    Route::get('regimenShow/{id}','RegimenController@show')->name('regimen.show');
+	Route::get('regimenDelete/{id}','RegimenController@destroy')->name('regimen.delete');
+    
 	Route::resource('sector','SectorController');
 
 	Route::resource('privilegio','PermisoController');
