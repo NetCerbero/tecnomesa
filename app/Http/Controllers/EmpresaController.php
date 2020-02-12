@@ -50,9 +50,10 @@ class EmpresaController extends Controller
      * @param  \App\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function show(Empresa $empresa)
+    public function show($id)
     {
-        //
+        $empresa = Empresa::findOrFail($id);
+        return view('empresa.show',compact('empresa'));
     }
 
     /**
@@ -90,8 +91,9 @@ class EmpresaController extends Controller
      * @param  \App\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empresa $empresa)
+    public function destroy($id)
     {
-        //
+        Empresa::destroy($id);
+        return redirect()->route('empresa.index');
     }
 }
