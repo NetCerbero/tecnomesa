@@ -20,7 +20,7 @@
 </style>
 @endsection
 @section('title')
-<h2>Registro de estudiante</h2>
+<h2>Registro de usuarios</h2>
 @endsection
 @section('content')
 <div class="row">
