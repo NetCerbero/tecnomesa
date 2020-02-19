@@ -17,7 +17,7 @@
                   <div class="card-header">
                     <div class="card-title">
                         <div class="d-flex bd-highlight mb-3">
-                          <div class="p-2 bd-highlight">Gestión de egresados</div>
+                          <div class="p-2 bd-highlight">Gestión de titulados</div>
                          {{--  <div class="p-2 bd-highlight ml-auto">
                             <a href="{{ route('empresa.create') }}" class="ml-auto btn btn-primary">Registrar</a>
                           </div> --}}
