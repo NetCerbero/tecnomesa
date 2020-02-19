@@ -20,14 +20,14 @@
    </style>
 @endsection
 @section('title')
-<h3>Registro de tribunal</h3>
+<h3>Registro de titulado</h3>
 @endsection
 @section('content')
 <div class="row">
     <div class="col">
         <!-- START card-->
         <div class="card card-default">
-            <div class="card-header">Registro tribunal</div>
+            <div class="card-header">Registro titulado</div>
             <div class="card-body">
             <form method="POST" action="{{route('titulado.store')}}" class="form-row" enctype="multipart/form-data">
                 @csrf
@@ -42,7 +42,7 @@
                 <div class="form-group col-12">
                     <label class="mb-0">Lista de egresados: </label>
                     <select name="egresado_id" id="" class="chosen-select form-control" required>
-                        <option value="">Elija el tribunal</option>
+                        <option value="">Elija el egresado</option>
                         @foreach ($egresados as $egresado)
                             @php
                                 $dato = Auth::user()->userDataUagrm($egresado->registro);
