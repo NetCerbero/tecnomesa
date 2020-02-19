@@ -65,7 +65,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $roles = Rol::all();
+        return view('usuario.edit', compact('user','roles'));
     }
 
     /**
@@ -77,7 +79,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user -> update($request->all());
+        return redirect()->route('usuario.index');
     }
 
     /**
