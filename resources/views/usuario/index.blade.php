@@ -55,9 +55,9 @@
                                 @endif
                                  
                                 <td>{{ $user->rol->nombre }}</td>
-                                <td>
-                                    <a class="badge badge-warning" href="{{route('usuario.edit',$user->id)}}"> editar </a>
-                                </td>
+                                <td><a class="badge badge-secondary" href="{{route('usuario.show',$user->id)}}"> visualizar </a></td>
+                                <td><a class="badge badge-warning" href="{{route('usuario.edit',$user->id)}}"> editar </a></td>
+                                <td><a class="badge badge-danger" href="{{route('usuario.destroy',$user->id)}}"> eliminar </a></td>
                             </tr>
                         @endforeach
                     </tbody>
