@@ -3,16 +3,16 @@
 
 @endsection
 @section('title')
-<h2>Edición de información</h2>
+<h2>Edición de usuarios</h2>
 @endsection
 @section('content')
 <div class="row">
     <div class="col">
         <!-- START card-->
         <div class="card card-default">
-            <div class="card-header">Edicición de usuario</div>
+            <div class="card-header">Edición de usuario</div>
             <div class="card-body">
-            <form method="POST" action="{{route('user.update',$user->id)}}">
+            <form method="POST" action="{{route('usuario.update',$user->id)}}">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -22,7 +22,7 @@
 
                 <div class="form-group">
                     <label>Apellido</label>
-                    <input name="apellidos" value="{{$user->apellidos}}" class="form-control" type="text" placeholder="Ingrese el apellido">
+                    <input name="apellido" value="{{$user->apellido}}" class="form-control" type="text" placeholder="Ingrese el apellido">
                 </div>
                 
                 <div class="form-group">
@@ -46,17 +46,14 @@
 
                 <div class="form-group">
                     <label>Contraseña</label>
-                    <input name="password" class="form-control" type="text" placeholder="Ingrese su contraseña">
+                    <input name="password" value="{{$user->password}}"  class="form-control" type="text" placeholder="Ingrese nueva contraseña">
                 </div>
 
-                <div class="form-group">
-                    <label>Fecha de nacimiento</label>
-                    <input name="fecha_nac" value="{{$user->fecha_nac}}" class="form-control" type="date" placeholder="Fecha de nacimiento">
-                </div>
+                
                 @if($user->tipo == 2)
                     <div class="form-group">
                         <label>Codigo</label>
-                        <input name="codigo" value="{{$user->codigo}}" class="form-control" type="text" placeholder="codigo de docente">
+                        <input name="codigo" value="{{$user->registro}}" class="form-control" type="text" placeholder="codigo de usuario">
                     </div>
                 @elseif($user->tipo == 1)
                     <div class="form-group">
@@ -67,10 +64,10 @@
                 <input name="tipo" class="form-control" type="hidden" value="{{$user->tipo}}">
                 <div class="form-group">
                     <label>Nombre del rol</label>
-                    <select name="role_id" id=""  class="form-control">
+                    <select name="rol_id" id=""  class="form-control">
                         <option value="">Elija el rol</option>
                         @foreach($roles as $rol)
-                            @if($user->role_id == $rol->id)
+                            @if($user->rol_id == $rol->id)
                                 <option value="{{$rol->id}}" selected>{{$rol->nombre}}</option>
                             @else
                                 <option value="{{$rol->id}}">{{$rol->nombre}}</option>
