@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Postgrado extends Model
 {
+	use SoftDeletes;
     protected $fillable = [
     	'titulo','grado_id','titulado_id'
     ];

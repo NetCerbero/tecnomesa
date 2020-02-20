@@ -30,11 +30,12 @@ class CreateUsersTable extends Migration
 
             // foreign key
             $table->unsignedBigInteger('rol_id');
-            $table->foreign('rol_id')->references('id')->on('rols');
+            $table->foreign('rol_id')->references('id')->on('rols')->onDelete('cascade');
 
 
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

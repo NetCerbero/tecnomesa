@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Empleado extends Model
 {
+
+    use SoftDeletes;
+
+
     protected $fillable = [
     	'funcion','conocimiento','tecnologia','nivel_id','empresa_id','area_id','titulado_id'
     ];

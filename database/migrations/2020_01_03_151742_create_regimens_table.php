@@ -17,6 +17,7 @@ class CreateRegimensTable extends Migration
             $table->bigIncrements('id');
             $table->string('tipo');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

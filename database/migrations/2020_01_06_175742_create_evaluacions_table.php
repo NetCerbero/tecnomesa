@@ -23,10 +23,10 @@ class CreateEvaluacionsTable extends Migration
             $table->string('nresolucion')->nullable();
             $table->unsignedBigInteger('graduacion_id');
 
-            $table->foreign('graduacion_id')->references('id')->on('graduacions');
+            $table->foreign('graduacion_id')->references('id')->on('graduacions')->onDelete('cascade');
 
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

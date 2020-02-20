@@ -20,8 +20,9 @@ class CreateCusTable extends Migration
             $table->string('route');
             $table->unsignedBigInteger('paquete_id');
             // foreign key
-            $table->foreign('paquete_id')->references('id')->on('paquetes');
+            $table->foreign('paquete_id')->references('id')->on('paquetes')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

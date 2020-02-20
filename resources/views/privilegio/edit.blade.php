@@ -34,13 +34,21 @@
                               </thead>
                               <tbody>
                                     @foreach($cus as $cu)
-                                        @php
-                                            $vrf = $cu->pivot;
-                                            
-                                        @endphp
+                                    {{-- {{ dd($permiso) }} --}}
                                         <tr>
                                             <td>{{$cu->id}}</td>
                                             <td>{{$cu->nombre}}</td>
+                                            @php
+                                                $vrf = [
+                                                    'leer' => 0,
+                                                    'escribir' => 0,
+                                                    'eliminar' => 0,
+                                                    'editar' => 0
+                                                ];
+                                                if(array_key_exists($cu->id,$permiso)){
+                                                    $vrf = $permiso[$cu->id];
+                                                }
+                                            @endphp
                                             <td>
                                                 <select name="data[{{$cu->id}}][leer]" id="" class="form-control">
                                                     @if($vrf['leer'] == 1)

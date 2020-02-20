@@ -57,7 +57,13 @@
                                 <td>{{ $user->rol->nombre }}</td>
                                 <td><a class="badge badge-secondary" href="{{route('usuario.show',$user->id)}}"> visualizar </a></td>
                                 <td><a class="badge badge-warning" href="{{route('usuario.edit',$user->id)}}"> editar </a></td>
-                                <td><a class="badge badge-danger" href="{{route('usuario.destroy',$user->id)}}"> eliminar </a></td>
+                                <td>
+                                    <form action="{{ route('usuario.destroy', $user->id) }}" method="post">
+                                        {{ method_field('DELETE') }}
+                                        @csrf
+                                        <button class="badge badge-danger"> eliminar</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

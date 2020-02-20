@@ -19,6 +19,7 @@ class CreateAreasTable extends Migration
             // 1 = areas de examen grado y tesis | 2 = area puesto - empleo
             $table->integer('tipo');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -19,18 +19,19 @@ class CreateEmpleadosTable extends Migration
             $table->text('conocimiento');
             $table->text('tecnologia')->nullable();
             $table->unsignedBigInteger('nivel_id');
-            $table->foreign('nivel_id')->references('id')->on('nivel_puestos');
+            $table->foreign('nivel_id')->references('id')->on('nivel_puestos')->onDelete('cascade');
 
             $table->unsignedBigInteger('empresa_id');
-            $table->foreign('empresa_id')->references('id')->on('empresas');
+            $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('cascade');
 
             $table->unsignedBigInteger('area_id');
-            $table->foreign('area_id')->references('id')->on('areas');
+            $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
 
             $table->unsignedBigInteger('titulado_id');
-            $table->foreign('titulado_id')->references('id')->on('titulados');
+            $table->foreign('titulado_id')->references('id')->on('titulados')->onDelete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

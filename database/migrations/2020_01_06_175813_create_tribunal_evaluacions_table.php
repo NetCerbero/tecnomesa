@@ -22,9 +22,11 @@ class CreateTribunalEvaluacionsTable extends Migration
             $table->unsignedBigInteger('tribunal_id');
             $table->unsignedBigInteger('evaluacion_id');
 
-            $table->foreign('tribunal_id')->references('id')->on('users');
-            $table->foreign('evaluacion_id')->references('id')->on('evaluacions');
+            $table->foreign('tribunal_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('evaluacion_id')->references('id')->on('evaluacions')->onDelete('cascade');
+           
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

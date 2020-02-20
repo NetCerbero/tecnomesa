@@ -16,9 +16,9 @@ class UsersTableSeeder extends Seeder
         //estudiante egresado
         User::Create([
         	'telefono' => '68912826',
-        	'email' => 'sariah@gmail.com',
+        	'email' => 'isabel@gmail.com',
         	'password' => Hash::make('123'),
-        	'registro' => '214014266',
+        	'registro' => '212049194',
         	'tipo' => 1,
         	'rol_id' => 1
         ]);

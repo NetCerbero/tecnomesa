@@ -17,8 +17,9 @@ class CreateTituladosTable extends Migration
             $table->bigIncrements('id');
             $table->integer('anio_titulacion');
             $table->unsignedBigInteger('egresado_id');
-            $table->foreign('egresado_id')->references('id')->on('users');
+            $table->foreign('egresado_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

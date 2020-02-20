@@ -17,6 +17,7 @@ class CreateNivelPuestosTable extends Migration
             $table->bigIncrements('id');
             $table->string('nivel');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

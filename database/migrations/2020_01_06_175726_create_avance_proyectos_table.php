@@ -22,11 +22,11 @@ class CreateAvanceProyectosTable extends Migration
             $table->unsignedBigInteger('guia_id');
             $table->unsignedBigInteger('trabajo_id');
 
-            $table->foreign('guia_id')->references('id')->on('users');
-            $table->foreign('trabajo_id')->references('id')->on('graduacions');
+            $table->foreign('guia_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('trabajo_id')->references('id')->on('graduacions')->onDelete('cascade');
             
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

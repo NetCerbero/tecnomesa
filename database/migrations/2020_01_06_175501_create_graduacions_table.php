@@ -32,12 +32,12 @@ class CreateGraduacionsTable extends Migration
             $table->unsignedBigInteger('egresado_id');
 
 
-            $table->foreign('guia_id')->references('id')->on('users');
-            $table->foreign('area_id')->references('id')->on('areas');
-            $table->foreign('egresado_id')->references('id')->on('users');
+            $table->foreign('guia_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
+            $table->foreign('egresado_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

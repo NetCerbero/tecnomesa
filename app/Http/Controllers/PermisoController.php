@@ -71,8 +71,22 @@ class PermisoController extends Controller
     public function edit($id)
     {
         $rol = Rol::findOrFail($id);
+        $permiso = $this->permiso($rol->cu);
         $cus = Cu::all();
-        return view('privilegio.edit',compact('rol','cus'));
+        return view('privilegio.edit',compact('rol','cus','permiso'));
+    }
+
+    public function permiso($data){
+        $rsp = [];
+        foreach ($data as $value) {
+            $rsp[$value->id] = [
+                        "leer" => $value->pivot->leer,
+                        "escribir" => $value->pivot->escribir,
+                        "editar" => $value->pivot->editar,
+                        "eliminar" => $value->pivot->eliminar
+                    ];
+        }
+        return $rsp;
     }
 
     /**

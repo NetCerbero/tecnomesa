@@ -19,11 +19,11 @@ class CreatePostgradosTable extends Migration
 
             $table->unsignedBigInteger('grado_id');
             $table->unsignedBigInteger('titulado_id');
-            $table->foreign('titulado_id')->references('id')->on('titulados');
-            
-            $table->foreign('grado_id')->references('id')->on('grado_academicos');
+            $table->foreign('titulado_id')->references('id')->on('titulados')->onDelete('cascade');
+            $table->foreign('grado_id')->references('id')->on('grado_academicos')->onDelete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

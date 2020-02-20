@@ -18,6 +18,7 @@ class CreateRolsTable extends Migration
             $table->string('nombre');
             $table->string('icon');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

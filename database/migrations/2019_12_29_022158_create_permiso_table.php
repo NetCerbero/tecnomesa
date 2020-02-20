@@ -22,10 +22,11 @@ class CreatePermisoTable extends Migration
             $table->char('eliminar',1);
             $table->char('editar',1);
 
-            $table->foreign('rol_id')->references('id')->on('rols');
-            $table->foreign('cu_id')->references('id')->on('cus');
+            $table->foreign('rol_id')->references('id')->on('rols')->onDelete('cascade');
+            $table->foreign('cu_id')->references('id')->on('cus')->onDelete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

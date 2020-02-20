@@ -20,12 +20,13 @@ class CreateEmpresasTable extends Migration
             $table->string('direccion')->nullable();
 
             $table->unsignedBigInteger('regimen_id');
-            $table->foreign('regimen_id')->references('id')->on('regimens');
+            $table->foreign('regimen_id')->references('id')->on('regimens')->onDelete('cascade');
 
             $table->unsignedBigInteger('sector_id');
-            $table->foreign('sector_id')->references('id')->on('sectors');
+            $table->foreign('sector_id')->references('id')->on('sectors')->onDelete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

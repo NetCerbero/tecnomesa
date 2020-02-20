@@ -17,6 +17,7 @@ class CreateGradoAcademicosTable extends Migration
             $table->bigIncrements('id');
             $table->string('grado');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
