@@ -77,7 +77,10 @@
                                   		{{ $graduacion->area->area }}
                                   	@endif
                                   </td>
-                                  {{-- <td><a class="badge badge-warning" href="{{route('egresado.edit',$graduacion->id)}}"> editar </a></td> --}}
+                                    <a class="badge badge-secondary" href="{{route('egresado.show',$graduacion->id)}}"> visualizar </a>
+                                    <a class="badge badge-warning" href="{{route('egresado.edit',$graduacion->id)}}"> editar </a>
+                                    <a class="badge badge-danger" href="{{route('egresado.destroy',$graduacion->id)}}"> eliminar </a>
+                                  </td>
                                 </tr>
                             @endforeach
                         </tbody>
