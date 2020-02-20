@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('layouts.home');
+        $contador = 0;
+        return view('layouts.home',compact('contador'));
     }
 }

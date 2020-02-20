@@ -6,9 +6,18 @@ use App\AvanceProyecto;
 use App\Graduacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Estadistica;
 
 class AvanceProyectoController extends Controller
 {
+    private $id = 7;
+
+    public function estadisticas(){
+        $est = Estadistica::find($this->id);
+        $est->visto = $est->visto + 1;
+        $est->save();
+        return $est->visto;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +26,8 @@ class AvanceProyectoController extends Controller
     public function index()
     {
         $graduaciones = Graduacion::all()->where('tipo','3');
-        return view('avanceproyecto.index',compact('graduaciones'));
+        $contador = $this->estadisticas();
+        return view('avanceproyecto.index',compact('graduaciones','contador'));
     }
 
     /**
@@ -43,6 +53,7 @@ class AvanceProyectoController extends Controller
             $data = $request->all();
             $data['file'] = $path;
             AvanceProyecto::create($data);
+            $this->estadisticas();
             return redirect()->route('avance.index');
         }
     }
@@ -56,7 +67,8 @@ class AvanceProyectoController extends Controller
     public function show( $id )
     {
         $graduacion = Graduacion::find($id);
-        return view('avanceproyecto.show',compact('graduacion'));
+        $contador = $this->estadisticas();
+        return view('avanceproyecto.show',compact('graduacion','contador'));
     }
 
     /**
@@ -68,12 +80,14 @@ class AvanceProyectoController extends Controller
     public function edit($id)
     {
         $graduacion = Graduacion::find($id);
-        return view('avanceproyecto.create',compact('id','graduacion'));
+        $contador = $this->estadisticas();
+        return view('avanceproyecto.create',compact('id','graduacion','contador'));
     }
 
     public function revisar($id){
         $graduacion = Graduacion::find($id);
-        return view('avanceproyecto.edit',compact('id','graduacion'));
+        $contador = $this->estadisticas();
+        return view('avanceproyecto.edit',compact('id','graduacion','contador'));
     }
 
     /**
@@ -87,7 +101,7 @@ class AvanceProyectoController extends Controller
     {
         $avance = AvanceProyecto::find($id);
         $avance->update($request->all());
-
+        $this->estadisticas();
         return redirect()->route('avance.index');
     }
 
@@ -99,7 +113,7 @@ class AvanceProyectoController extends Controller
      */
     public function destroy( $id )
     {
-        //
+        $this->estadisticas();
     }
 
     // public function getDownload()

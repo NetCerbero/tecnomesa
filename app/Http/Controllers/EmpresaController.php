@@ -6,9 +6,17 @@ use App\Empresa;
 use Illuminate\Http\Request;
 use App\Regimen;
 use App\Sector;
+use App\Estadistica;
 
 class EmpresaController extends Controller
 {
+    private $id = 2;
+    public function estadisticas(){
+        $est = Estadistica::find($this->id);
+        $est->visto = $est->visto + 1;
+        $est->save();
+        return $est->visto;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +25,8 @@ class EmpresaController extends Controller
     public function index()
     {
         $empresas = Empresa::all();
-        return view('empresa.index',compact('empresas'));
+        $contador = $this->estadisticas();
+        return view('empresa.index',compact('empresas','contador'));
     }
 
     /**
@@ -29,7 +38,8 @@ class EmpresaController extends Controller
     {
         $sectores = Sector::all();
         $regimenes = Regimen::all();
-        return view('empresa.create',compact('sectores','regimenes'));
+        $contador = $this->estadisticas();
+        return view('empresa.create',compact('sectores','regimenes','contador'));
     }
 
     /**
@@ -41,6 +51,7 @@ class EmpresaController extends Controller
     public function store(Request $request)
     {
         Empresa::create($request->all());
+        $this->estadisticas();
         return redirect()->route('empresa.index');
     }
 
@@ -53,7 +64,8 @@ class EmpresaController extends Controller
     public function show($id)
     {
         $empresa = Empresa::findOrFail($id);
-        return view('empresa.show',compact('empresa'));
+        $contador = $this->estadisticas();
+        return view('empresa.show',compact('empresa','contador'));
     }
 
     /**
@@ -67,8 +79,8 @@ class EmpresaController extends Controller
         $empresa = Empresa::find($id);
         $sectores = Sector::all();
         $regimenes = Regimen::all();
-
-        return view('empresa.edit',compact('empresa','sectores','regimenes'));
+        $contador = $this->estadisticas();
+        return view('empresa.edit',compact('empresa','sectores','regimenes','contador'));
     }
 
     /**
@@ -82,6 +94,7 @@ class EmpresaController extends Controller
     {
         $empresa=Empresa::find($id);
         $empresa->update($request->all());
+        $this->estadisticas();
         return redirect()->route('empresa.index');
     }
 
@@ -94,6 +107,7 @@ class EmpresaController extends Controller
     public function destroy($id)
     {
         Empresa::destroy($id);
+        $this->estadisticas();
         return redirect()->route('empresa.index');
     }
 }

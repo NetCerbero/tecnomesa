@@ -96,5 +96,13 @@ class CusTableSeeder extends Seeder
             'route' => 'inflaboral',
         	'paquete_id' => 3,
         ]);
+
+        //Reportes
+        Cu::create([
+            'nombre' => 'Conteo de paginas',
+            'icon' => 'fa fa-user',
+            'route' => 'estadistica',
+            'paquete_id' => 3,
+        ]);
     }
 }

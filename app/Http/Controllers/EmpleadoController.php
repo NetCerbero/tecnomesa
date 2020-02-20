@@ -8,9 +8,17 @@ use App\NivelPuesto;
 use App\Area;
 use App\Empresa;
 use App\Titulado;
+use App\Estadistica;
 
 class EmpleadoController extends Controller
 {
+    private $id = 12;
+    public function estadisticas(){
+        $est = Estadistica::find($this->id);
+        $est->visto = $est->visto + 1;
+        $est->save();
+        return $est->visto;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +27,8 @@ class EmpleadoController extends Controller
     public function index()
     {
         $empleados = Empleado::all();
-        return view('empleado.index',compact('empleados'));
+        $contador = $this->estadisticas();
+        return view('empleado.index',compact('empleados','contador'));
     }
 
     /**
@@ -33,7 +42,8 @@ class EmpleadoController extends Controller
         $nivelPuestos = NivelPuesto::all();
         $titulados = Titulado::all();
         $areas = Area::all()->where('tipo',2);
-        return view('empleado.create',compact('empresas','nivelPuestos','areas','titulados'));
+        $contador = $this->estadisticas();
+        return view('empleado.create',compact('empresas','nivelPuestos','areas','titulados','contador'));
     }
 
     /**
@@ -45,6 +55,7 @@ class EmpleadoController extends Controller
     public function store(Request $request)
     {
         Empleado::create($request->all());
+        $this->estadisticas();
         return redirect()->route('inflaboral.index');
     }
 

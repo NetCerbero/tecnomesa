@@ -6,8 +6,19 @@ use App\Evaluacion;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Estadistica;
+
 class EvaluacionController extends Controller
 {
+    private $id = 9;
+
+    public function estadisticas(){
+        $est = Estadistica::find($this->id);
+        $est->visto = $est->visto + 1;
+        $est->save();
+        return $est->visto;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -81,7 +92,8 @@ class EvaluacionController extends Controller
             $data['id'] = $eva->id;
             $rsp[] = $data;
         }
-        return view('evaluacion.index',compact('rsp'));
+        $contador = $this->estadisticas();
+        return view('evaluacion.index',compact('rsp','contador'));
         
     }
 
@@ -98,7 +110,8 @@ class EvaluacionController extends Controller
     public function crear($id){
         //$evaluacion = Evaluacion::find($id);
         $evaluacion = Evaluacion::find($id);
-        return view('evaluacion.create',compact('id','evaluacion'));
+        $contador = $this->estadisticas();
+        return view('evaluacion.create',compact('id','evaluacion','contador'));
     }
 
     /**
@@ -133,6 +146,7 @@ class EvaluacionController extends Controller
                 
             }
         }
+        $this->estadisticas();
         return redirect()->route('evaluacion.index');
     }
 

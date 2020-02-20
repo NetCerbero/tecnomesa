@@ -6,8 +6,18 @@ use App\Postgrado;
 use Illuminate\Http\Request;
 use App\GradoAcademico;
 use App\Titulado;
+use App\Estadistica;
+
 class PostgradoController extends Controller
 {
+    private $id = 11;
+
+    public function estadisticas(){
+        $est = Estadistica::find($this->id);
+        $est->visto = $est->visto + 1;
+        $est->save();
+        return $est->visto;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +27,8 @@ class PostgradoController extends Controller
     {
 
         $postgrados = Postgrado::all();
-        return view('postgrado.index',compact('postgrados'));
+        $contador = $this->estadisticas();
+        return view('postgrado.index',compact('postgrados','contador'));
     }
 
     /**
@@ -29,7 +40,8 @@ class PostgradoController extends Controller
     {
         $grados = GradoAcademico::all();
         $titulados = Titulado::all();
-        return view('postgrado.create',compact('grados','titulados'));
+        $contador = $this->estadisticas();
+        return view('postgrado.create',compact('grados','titulados','contador'));
     }
 
     /**
@@ -41,6 +53,7 @@ class PostgradoController extends Controller
     public function store(Request $request)
     {
         Postgrado::create($request->all());
+        $this->estadisticas();
         return redirect()->route('postgrado.index');
     }
 
@@ -63,7 +76,7 @@ class PostgradoController extends Controller
      */
     public function edit(Postgrado $postgrado)
     {
-        //
+        $this->estadisticas();
     }
 
     /**

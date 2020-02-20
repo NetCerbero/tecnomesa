@@ -3,8 +3,18 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Regimen;
+use App\Estadistica;
+
 class RegimenController extends Controller
 {
+    private $id = 3;
+
+    public function estadisticas(){
+        $est = Estadistica::find($this->id);
+        $est->visto = $est->visto + 1;
+        $est->save();
+        return $est->visto;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +23,8 @@ class RegimenController extends Controller
     public function index()
     {
         $regimenes = Regimen::all();
-        return view('regimen.index',compact('regimenes'));
+        $contador = $this->estadisticas();
+        return view('regimen.index',compact('regimenes','contador'));
     }
 
     /**
@@ -23,6 +34,7 @@ class RegimenController extends Controller
      */
     public function create()
     {
+        $this->estadisticas();
         return view('regimen.create');
     }
 
@@ -35,6 +47,7 @@ class RegimenController extends Controller
     public function store(Request $request)
     {
         Regimen::create($request->all());
+        $this->estadisticas();
         return redirect()->route('regimen.index');
     }
 
@@ -47,7 +60,8 @@ class RegimenController extends Controller
     public function show($id)
     {
         $regimen = Regimen::find($id);
-        return view('regimen.edit', compact('regimen'));
+        $contador = $this->estadisticas();
+        return view('regimen.edit', compact('regimen','contador'));
     }
 
     /**
@@ -59,7 +73,8 @@ class RegimenController extends Controller
     public function edit($id)
     {
         $regimen = Regimen::find($id);
-        return view('regimen.edit', compact('regimen'));
+        $contador = $this->estadisticas();
+        return view('regimen.edit', compact('regimen','contador'));
     }
 
     /**
@@ -73,6 +88,7 @@ class RegimenController extends Controller
     {
         $regimen = Regimen::find($id);
         $regimen->update($request->all());
+        $this->estadisticas();
         return redirect()->route('regimen.index');
     }
 
@@ -85,6 +101,7 @@ class RegimenController extends Controller
     public function destroy($id)
     {
         Regimen::destroy($id);
+        $this->estadisticas();
         return redirect()->route('regimen.index');
     }
 }

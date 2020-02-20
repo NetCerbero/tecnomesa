@@ -7,8 +7,18 @@ use Illuminate\Http\Request;
 use App\Graduacion;
 use App\User;
 use App\Evaluacion;
+use App\Estadistica;
+
 class TribunalEvaluacionController extends Controller
 {
+    private $id = 8;
+
+    public function estadisticas(){
+        $est = Estadistica::find($this->id);
+        $est->visto = $est->visto + 1;
+        $est->save();
+        return $est->visto;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +27,8 @@ class TribunalEvaluacionController extends Controller
     public function index()
     {
         $graduaciones = Graduacion::all()->whereIn('tipo',[2,3]);
-        return view('asignacion.index',compact('graduaciones'));
+        $contador = $this->estadisticas();
+        return view('asignacion.index',compact('graduaciones','contador'));
     }
 
     /**
@@ -34,7 +45,8 @@ class TribunalEvaluacionController extends Controller
     public function evaluacion($id){
         $tribunales = User::all()->where('tipo','2');
         $graduacion = Graduacion::find($id);
-        return view('asignacion.create',compact('id','tribunales','graduacion'));
+        $contador = $this->estadisticas();
+        return view('asignacion.create',compact('id','tribunales','graduacion','contador'));
     }
 
     /**
@@ -71,7 +83,7 @@ class TribunalEvaluacionController extends Controller
                 ]
             );
         }
-
+        $this->estadisticas();
         return redirect()->route('asignacion.index');
         
     }
@@ -85,7 +97,8 @@ class TribunalEvaluacionController extends Controller
     public function show( $id )
     {
         $graduacion = Graduacion::find($id);
-        return view('asignacion.show',compact('graduacion'));
+        $contador = $this->estadisticas();
+        return view('asignacion.show',compact('graduacion','contador'));
     }
 
     /**
@@ -98,7 +111,8 @@ class TribunalEvaluacionController extends Controller
     {
         $evaluacion = Evaluacion::find($id);
         $tribunales = User::all()->where('tipo','2');
-        return view('asignacion.edit',compact('evaluacion','tribunales'));
+        $contador = $this->estadisticas();
+        return view('asignacion.edit',compact('evaluacion','tribunales','contador'));
     }
 
     /**
@@ -134,7 +148,7 @@ class TribunalEvaluacionController extends Controller
                 ]
             );
         }
-
+        $this->estadisticas();
         return redirect()->route('asignacion.index');
     }
 
@@ -146,6 +160,6 @@ class TribunalEvaluacionController extends Controller
      */
     public function destroy(TribunalEvaluacion $tribunalEvaluacion)
     {
-        //
+        $this->estadisticas();
     }
 }

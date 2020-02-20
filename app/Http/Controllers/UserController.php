@@ -7,9 +7,18 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use Auth;
 use App\Rol;
+use App\Estadistica;
 
 class UserController extends Controller
 {
+    private $id = 1;
+
+    public function estadisticas(){
+        $est = Estadistica::find($this->id);
+        $est->visto = $est->visto + 1;
+        $est->save();
+        return $est->visto;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +27,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('usuario.index',compact('users'));
+        $contador = $this->estadisticas();
+        return view('usuario.index',compact('users','contador'));
     }
 
     /**
@@ -29,7 +39,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Rol::all();
-        return view('usuario.create', compact('roles'));
+        $contador = $this->estadisticas();
+        return view('usuario.create', compact('roles','contador'));
     }
 
     /**
@@ -42,6 +53,7 @@ class UserController extends Controller
     {
         $request['password'] = Hash::make($request->password);
         User::create($request->all());
+        $this->estadisticas();
         return redirect()->route('usuario.index');
 
     }
@@ -55,7 +67,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('usuario.show', compact('user'));
+        $contador = $this->estadisticas();
+        return view('usuario.show', compact('user','contador'));
     }
 
     /**
@@ -68,7 +81,8 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles = Rol::all();
-        return view('usuario.edit', compact('user','roles'));
+        $contador = $this->estadisticas();
+        return view('usuario.edit', compact('user','roles','contador'));
     }
 
     /**
@@ -82,6 +96,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user -> update($request->all());
+        $this->estadisticas();
         return redirect()->route('usuario.index');
     }
 
@@ -94,6 +109,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::findOrFail($id)->delete();
+        $this->estadisticas();
         return redirect()->route('usuario.index');
     }
 

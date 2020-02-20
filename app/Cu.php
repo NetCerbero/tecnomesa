@@ -21,4 +21,8 @@ class Cu extends Model
     public function paquete(){
     	return $this->hasOne('App\Paquete', 'id','paquete_id');
     }
+
+    public function estadistica(){
+        return $this->hasOne('App\Estadistica','cu_id');
+    }
 }
