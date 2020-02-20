@@ -76,7 +76,8 @@ class GraduacionController extends Controller
      */
     public function show(Graduacion $graduacion)
     {
-        //
+        $graduacion = Graduacion::findOrFail($id);
+        return view('graduacion.show',compact('graduacion'));
     }
 
     /**
