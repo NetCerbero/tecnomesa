@@ -29,7 +29,7 @@ class PaquetesTableSeeder extends Seeder
         ]);
         //id = 4
         Paquete::create([
-        	'nombre' => 'Reportes',
+        	'nombre' => 'Estadistica',
         	'icon' => 'fa fa-edit'
         ]);
     }

@@ -15,6 +15,7 @@ class EmpresaController extends Controller
         $est = Estadistica::find($this->id);
         $est->visto = $est->visto + 1;
         $est->save();
+        return $est->visto;
     }
     /**
      * Display a listing of the resource.
@@ -24,8 +25,8 @@ class EmpresaController extends Controller
     public function index()
     {
         $empresas = Empresa::all();
-        $this->estadisticas();
-        return view('empresa.index',compact('empresas'));
+        $contador = $this->estadisticas();
+        return view('empresa.index',compact('empresas','contador'));
     }
 
     /**
@@ -37,8 +38,8 @@ class EmpresaController extends Controller
     {
         $sectores = Sector::all();
         $regimenes = Regimen::all();
-        $this->estadisticas();
-        return view('empresa.create',compact('sectores','regimenes'));
+        $contador = $this->estadisticas();
+        return view('empresa.create',compact('sectores','regimenes','contador'));
     }
 
     /**
@@ -63,8 +64,8 @@ class EmpresaController extends Controller
     public function show($id)
     {
         $empresa = Empresa::findOrFail($id);
-        $this->estadisticas();
-        return view('empresa.show',compact('empresa'));
+        $contador = $this->estadisticas();
+        return view('empresa.show',compact('empresa','contador'));
     }
 
     /**
@@ -78,8 +79,8 @@ class EmpresaController extends Controller
         $empresa = Empresa::find($id);
         $sectores = Sector::all();
         $regimenes = Regimen::all();
-        $this->estadisticas();
-        return view('empresa.edit',compact('empresa','sectores','regimenes'));
+        $contador = $this->estadisticas();
+        return view('empresa.edit',compact('empresa','sectores','regimenes','contador'));
     }
 
     /**

@@ -10,12 +10,13 @@ use App\Estadistica;
 
 class AvanceProyectoController extends Controller
 {
-    private $id = 6;
+    private $id = 7;
 
     public function estadisticas(){
         $est = Estadistica::find($this->id);
         $est->visto = $est->visto + 1;
         $est->save();
+        return $est->visto;
     }
     /**
      * Display a listing of the resource.
@@ -25,8 +26,8 @@ class AvanceProyectoController extends Controller
     public function index()
     {
         $graduaciones = Graduacion::all()->where('tipo','3');
-        $this->estadisticas();
-        return view('avanceproyecto.index',compact('graduaciones'));
+        $contador = $this->estadisticas();
+        return view('avanceproyecto.index',compact('graduaciones','contador'));
     }
 
     /**
@@ -66,8 +67,8 @@ class AvanceProyectoController extends Controller
     public function show( $id )
     {
         $graduacion = Graduacion::find($id);
-        $this->estadisticas();
-        return view('avanceproyecto.show',compact('graduacion'));
+        $contador = $this->estadisticas();
+        return view('avanceproyecto.show',compact('graduacion','contador'));
     }
 
     /**
@@ -79,14 +80,14 @@ class AvanceProyectoController extends Controller
     public function edit($id)
     {
         $graduacion = Graduacion::find($id);
-        $this->estadisticas();
-        return view('avanceproyecto.create',compact('id','graduacion'));
+        $contador = $this->estadisticas();
+        return view('avanceproyecto.create',compact('id','graduacion','contador'));
     }
 
     public function revisar($id){
         $graduacion = Graduacion::find($id);
-        $this->estadisticas();
-        return view('avanceproyecto.edit',compact('id','graduacion'));
+        $contador = $this->estadisticas();
+        return view('avanceproyecto.edit',compact('id','graduacion','contador'));
     }
 
     /**

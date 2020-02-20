@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Rol;
 use Illuminate\Http\Request;
+use App\Estadistica;
 
 class RolController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

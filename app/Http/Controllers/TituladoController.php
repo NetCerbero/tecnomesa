@@ -5,8 +5,18 @@ namespace App\Http\Controllers;
 use App\Titulado;
 use Illuminate\Http\Request;
 use App\User;
+use App\Estadistica;
+
 class TituladoController extends Controller
 {
+    private $id = 10;
+
+    public function estadisticas(){
+        $est = Estadistica::find($this->id);
+        $est->visto = $est->visto + 1;
+        $est->save();
+        return $est->visto;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,8 @@ class TituladoController extends Controller
     public function index()
     {
         $titulados = Titulado::all();
-        return view('titulado.index',compact('titulados'));
+        $contador = $this->estadisticas();
+        return view('titulado.index',compact('titulados','contador'));
     }
 
     /**
@@ -26,7 +37,8 @@ class TituladoController extends Controller
     public function create()
     {
         $egresados = User::all()->where('tipo',1);
-        return view('titulado.create',compact('egresados'));
+        $contador = $this->estadisticas();
+        return view('titulado.create',compact('egresados','contador'));
     }
 
     /**
@@ -38,6 +50,7 @@ class TituladoController extends Controller
     public function store(Request $request)
     {
         Titulado::create($request->all());
+        $this->estadisticas();
         return redirect()->route('titulado.index');
     }
 
@@ -49,7 +62,7 @@ class TituladoController extends Controller
      */
     public function show(Titulado $titulado)
     {
-        //
+        $this->estadisticas();
     }
 
     /**
@@ -60,7 +73,7 @@ class TituladoController extends Controller
      */
     public function edit(Titulado $titulado)
     {
-        //
+        $this->estadisticas();
     }
 
     /**
@@ -72,7 +85,7 @@ class TituladoController extends Controller
      */
     public function update(Request $request, Titulado $titulado)
     {
-        //
+        $this->estadisticas();
     }
 
     /**
@@ -83,6 +96,6 @@ class TituladoController extends Controller
      */
     public function destroy(Titulado $titulado)
     {
-        //
+        $this->estadisticas();
     }
 }

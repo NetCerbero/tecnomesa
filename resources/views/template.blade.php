@@ -436,7 +436,10 @@
             @yield('content')
          </div>
       </section><!-- Page footer-->
-      <footer class="footer-container"><span>&copy; 2019 - Angle</span></footer>
+      <footer class="footer-container">
+         <strong>Visto {{ $contador }} veces</strong>
+         {{-- <span>&copy; Tecnologia Web</span> --}}
+      </footer>
    </div><!-- =============== VENDOR SCRIPTS ===============-->
    <!-- MODERNIZR-->
    <script src="{{asset('vendor/modernizr/modernizr.custom.js')}}"></script><!-- STORAGE API-->

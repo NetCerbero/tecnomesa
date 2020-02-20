@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Estadistica;
 use Illuminate\Http\Request;
-
+use App\Cu;
 class EstadisticaController extends Controller
 {
+    private $id = 13;
+
+    public function estadisticas(){
+        $est = Estadistica::find($this->id);
+        $est->visto = $est->visto + 1;
+        $est->save();
+        return $est->visto;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,9 @@ class EstadisticaController extends Controller
      */
     public function index()
     {
-        return view('estadistica.estadisticas2018');
+        $contador = $this->estadisticas();
+        $cus = Cu::all();
+        return view('estadistica.estadisticas2018',compact('contador','cus'));
     }
 
     /**

@@ -17,6 +17,7 @@ class EmpleadoController extends Controller
         $est = Estadistica::find($this->id);
         $est->visto = $est->visto + 1;
         $est->save();
+        return $est->visto;
     }
     /**
      * Display a listing of the resource.
@@ -26,8 +27,8 @@ class EmpleadoController extends Controller
     public function index()
     {
         $empleados = Empleado::all();
-        $this->estadisticas();
-        return view('empleado.index',compact('empleados'));
+        $contador = $this->estadisticas();
+        return view('empleado.index',compact('empleados','contador'));
     }
 
     /**
@@ -41,8 +42,8 @@ class EmpleadoController extends Controller
         $nivelPuestos = NivelPuesto::all();
         $titulados = Titulado::all();
         $areas = Area::all()->where('tipo',2);
-        $this->estadisticas();
-        return view('empleado.create',compact('empresas','nivelPuestos','areas','titulados'));
+        $contador = $this->estadisticas();
+        return view('empleado.create',compact('empresas','nivelPuestos','areas','titulados','contador'));
     }
 
     /**

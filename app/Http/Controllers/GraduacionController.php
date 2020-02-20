@@ -6,6 +6,7 @@ use App\Graduacion;
 use App\Area;
 use App\User;
 use Illuminate\Http\Request;
+use App\Estadistica;
 
 class GraduacionController extends Controller
 {
@@ -14,6 +15,7 @@ class GraduacionController extends Controller
         $est = Estadistica::find($this->id);
         $est->visto = $est->visto + 1;
         $est->save();
+        return $est->visto;
     }
     
     /**
@@ -24,8 +26,8 @@ class GraduacionController extends Controller
     public function index()
     {
         $graduaciones = Graduacion::all();
-        $this->estadisticas();
-        return view('graduacion.index',compact('graduaciones'));
+        $contador = $this->estadisticas();
+        return view('graduacion.index',compact('graduaciones','contador'));
     }
 
     /**
@@ -37,8 +39,8 @@ class GraduacionController extends Controller
     {
         $areas = Area::all()->where('tipo','1');
         $tutores = User::all()->where('tipo','3');
-        $this->estadisticas();
-        return view('graduacion.create',compact('areas','tutores'));
+        $contador = $this->estadisticas();
+        return view('graduacion.create',compact('areas','tutores', 'contador'));
     }
 
     /**
