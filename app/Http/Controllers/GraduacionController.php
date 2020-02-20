@@ -17,7 +17,7 @@ class GraduacionController extends Controller
         $est->save();
         return $est->visto;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -88,7 +88,8 @@ class GraduacionController extends Controller
     public function show($id)
     {
         $graduacion = Graduacion::findOrFail($id);
-        return view('graduacion.show',compact('graduacion'));
+        $contador = $this->estadisticas();
+        return view('graduacion.show',compact('graduacion','contador'));
     }
 
     /**
@@ -149,7 +150,7 @@ class GraduacionController extends Controller
             }
         }
 
-        
+
         return $rsp;
     }
 }
