@@ -11,7 +11,7 @@ use App\Estadistica;
 
 class UserController extends Controller
 {
-    private $id = 1;
+    private $id = 2;
 
     public function estadisticas(){
         $est = Estadistica::find($this->id);
