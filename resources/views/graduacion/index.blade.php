@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{{ asset('vendor/datatables.net-responsive-bs/css/responsive.bootstrap.css') }}"><!-- =============== BOOTSTRAP STYLES ===============-->
 @endsection
 @section('title')
-<h3>Egresado - Graduación</h3>
+<h3>Egresado </h3>
 @endsection
 @section('content')
 <div class="d-flex justify-content-end my-2">
@@ -35,7 +35,7 @@
                               <th>Tutor</th>
                               <th>Titulo</th>
                               <th>Area</th>
-                              {{-- <th>Acciones</th> --}}
+                              <th>Acciones</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -77,6 +77,8 @@
                                   		{{ $graduacion->area->area }}
                                   	@endif
                                   </td>
+
+                                  <td>
                                     <a class="badge badge-secondary" href="{{route('egresado.show',$graduacion->id)}}"> visualizar </a>
                                     <a class="badge badge-warning" href="{{route('egresado.edit',$graduacion->id)}}"> editar </a>
                                     <a class="badge badge-danger" href="{{route('egresado.destroy',$graduacion->id)}}"> eliminar </a>
