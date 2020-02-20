@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class GraduacionController extends Controller
 {
+    private $id = 6;
+    public function estadisticas(){
+        $est = Estadistica::find($this->id);
+        $est->visto = $est->visto + 1;
+        $est->save();
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +24,7 @@ class GraduacionController extends Controller
     public function index()
     {
         $graduaciones = Graduacion::all();
+        $this->estadisticas();
         return view('graduacion.index',compact('graduaciones'));
     }
 
@@ -29,6 +37,7 @@ class GraduacionController extends Controller
     {
         $areas = Area::all()->where('tipo','1');
         $tutores = User::all()->where('tipo','3');
+        $this->estadisticas();
         return view('graduacion.create',compact('areas','tutores'));
     }
 
@@ -64,7 +73,7 @@ class GraduacionController extends Controller
                 'tipo' => $request['tipo']
             ]);
         }
-
+        $this->estadisticas();
         return redirect()->route('egresado.index');
     }
 

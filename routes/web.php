@@ -59,5 +59,5 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('postgrado','PostgradoController');
 	Route::resource('inflaboral','EmpleadoController');
 
-	Route::resource('estadistica','Estadisticas');
+	Route::resource('estadistica','EstadisticaController');
 });

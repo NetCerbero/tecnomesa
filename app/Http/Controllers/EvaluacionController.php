@@ -8,6 +8,14 @@ use Auth;
 use App\User;
 class EvaluacionController extends Controller
 {
+    private $id = 9;
+
+    public function estadisticas(){
+        $est = Estadistica::find($this->id);
+        $est->visto = $est->visto + 1;
+        $est->save();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -81,6 +89,7 @@ class EvaluacionController extends Controller
             $data['id'] = $eva->id;
             $rsp[] = $data;
         }
+        $this->estadisticas();
         return view('evaluacion.index',compact('rsp'));
         
     }
@@ -98,6 +107,7 @@ class EvaluacionController extends Controller
     public function crear($id){
         //$evaluacion = Evaluacion::find($id);
         $evaluacion = Evaluacion::find($id);
+        $this->estadisticas();
         return view('evaluacion.create',compact('id','evaluacion'));
     }
 
@@ -133,6 +143,7 @@ class EvaluacionController extends Controller
                 
             }
         }
+        $this->estadisticas();
         return redirect()->route('evaluacion.index');
     }
 

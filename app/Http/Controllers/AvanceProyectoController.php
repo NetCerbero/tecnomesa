@@ -6,9 +6,17 @@ use App\AvanceProyecto;
 use App\Graduacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Estadistica;
 
 class AvanceProyectoController extends Controller
 {
+    private $id = 6;
+
+    public function estadisticas(){
+        $est = Estadistica::find($this->id);
+        $est->visto = $est->visto + 1;
+        $est->save();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +25,7 @@ class AvanceProyectoController extends Controller
     public function index()
     {
         $graduaciones = Graduacion::all()->where('tipo','3');
+        $this->estadisticas();
         return view('avanceproyecto.index',compact('graduaciones'));
     }
 
@@ -43,6 +52,7 @@ class AvanceProyectoController extends Controller
             $data = $request->all();
             $data['file'] = $path;
             AvanceProyecto::create($data);
+            $this->estadisticas();
             return redirect()->route('avance.index');
         }
     }
@@ -56,6 +66,7 @@ class AvanceProyectoController extends Controller
     public function show( $id )
     {
         $graduacion = Graduacion::find($id);
+        $this->estadisticas();
         return view('avanceproyecto.show',compact('graduacion'));
     }
 
@@ -68,11 +79,13 @@ class AvanceProyectoController extends Controller
     public function edit($id)
     {
         $graduacion = Graduacion::find($id);
+        $this->estadisticas();
         return view('avanceproyecto.create',compact('id','graduacion'));
     }
 
     public function revisar($id){
         $graduacion = Graduacion::find($id);
+        $this->estadisticas();
         return view('avanceproyecto.edit',compact('id','graduacion'));
     }
 
@@ -87,7 +100,7 @@ class AvanceProyectoController extends Controller
     {
         $avance = AvanceProyecto::find($id);
         $avance->update($request->all());
-
+        $this->estadisticas();
         return redirect()->route('avance.index');
     }
 
@@ -99,7 +112,7 @@ class AvanceProyectoController extends Controller
      */
     public function destroy( $id )
     {
-        //
+        $this->estadisticas();
     }
 
     // public function getDownload()
