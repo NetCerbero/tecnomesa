@@ -74,7 +74,7 @@ class GraduacionController extends Controller
      * @param  \App\Graduacion  $graduacion
      * @return \Illuminate\Http\Response
      */
-    public function show(Graduacion $graduacion)
+    public function show($id)
     {
         $graduacion = Graduacion::findOrFail($id);
         return view('graduacion.show',compact('graduacion'));
