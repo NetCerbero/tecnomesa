@@ -17,7 +17,7 @@ class GraduacionController extends Controller
         $est->save();
         return $est->visto;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -88,7 +88,8 @@ class GraduacionController extends Controller
     public function show($id)
     {
         $graduacion = Graduacion::findOrFail($id);
-        return view('graduacion.show',compact('graduacion'));
+        $contador = $this->estadisticas();
+        return view('graduacion.show',compact('graduacion','contador'));
     }
 
     /**
@@ -97,9 +98,13 @@ class GraduacionController extends Controller
      * @param  \App\Graduacion  $graduacion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Graduacion $graduacion)
+    public function edit($id)
     {
-        //
+        $graduacion = Graduacion::find($id);
+        $areas = Area::all()->where('tipo','1');
+        $tutores = User::all()->where('tipo','3');
+        $contador = $this->estadisticas();
+        return view('graduacion.edit',compact('graduacion','areas','tutores','contador'));
     }
 
     /**
@@ -109,9 +114,12 @@ class GraduacionController extends Controller
      * @param  \App\Graduacion  $graduacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Graduacion $graduacion)
+    public function update(Request $request, $id)
     {
-        //
+        $graduacion = Graduacion::find($id);
+        $graduacion->update($request->all());
+        $this->estadisticas();
+        return redirect()->route('egresado.index');
     }
 
     /**
@@ -120,9 +128,11 @@ class GraduacionController extends Controller
      * @param  \App\Graduacion  $graduacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Graduacion $graduacion)
+    public function destroy( $id)
     {
-        //
+        Graduacion::destroy($id);
+        $this->estadisticas();
+        return redirect()->route('egresado.index');
     }
 
     public function getInfoUser($reg){
@@ -149,7 +159,7 @@ class GraduacionController extends Controller
             }
         }
 
-        
+
         return $rsp;
     }
 }
