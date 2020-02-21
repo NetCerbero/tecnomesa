@@ -61,3 +61,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 	Route::resource('estadistica','EstadisticaController');
 });
+
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+    return "probemos";
+});
