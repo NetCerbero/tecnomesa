@@ -29,10 +29,10 @@
                                  <tr>
                                     <th>#</th>
                                     <th>FUncionalidades</th>
-                                    <th>Leer</th>
-                                    <th>Escribir</th>
+                                    <th>Acceso</th>
+                                   {{--  <th>Escribir</th>
                                     <th>Eliminar</th>
-                                    <th>Editar</th>
+                                    <th>Editar</th> --}}
                                  </tr>
                               </thead>
                               <tbody>
@@ -46,7 +46,7 @@
                                                     <option value="1">Si</option>
                                                 </select>
                                             </td>
-                                            <td>
+                                           {{--  <td>
                                                 <select name="data[{{$cus[$i]->id}}][escribir]" id="" class="form-control">
                                                     <option value="0">No</option>
                                                     <option value="1">Si</option>
@@ -63,7 +63,7 @@
                                                     <option value="0">No</option>
                                                     <option value="1">Si</option>
                                                 </select>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     @endfor
                               </tbody>

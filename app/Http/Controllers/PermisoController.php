@@ -52,6 +52,9 @@ class PermisoController extends Controller
         $rol = Rol::find($request['rol']);
         
         foreach($request['data'] as $key => $value ){
+            $value['escribir'] = 0;
+            $value['eliminar'] = 0;
+            $value['editar'] = 0;
             $rol->cu()->syncWithoutDetaching(
                 [
                     $key => $value
@@ -113,6 +116,9 @@ class PermisoController extends Controller
         $rol = Rol::find($id);
         
         foreach($request['data'] as $key => $value ){
+            $value['escribir'] = 0;
+            $value['eliminar'] = 0;
+            $value['editar'] = 0;
             $rol->cu()->syncWithoutDetaching(
                 [
                     $key => $value

@@ -26,10 +26,10 @@
                                  <tr>
                                     <th>#</th>
                                     <th>Funcionalidades</th>
-                                    <th>Leer</th>
-                                    <th>Escribir</th>
+                                    <th>Acceso</th>
+                                    {{-- <th>Escribir</th>
                                     <th>Eliminar</th>
-                                    <th>Editar</th>
+                                    <th>Editar</th> --}}
                                  </tr>
                               </thead>
                               <tbody>
@@ -60,7 +60,7 @@
                                                     @endif
                                                 </select>
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 <select name="data[{{$cu->id}}][escribir]" id="" class="form-control">
                                                     @if($vrf['escribir'] == 1)
                                                         <option value="0">No</option>
@@ -92,7 +92,7 @@
                                                         <option value="1">Si</option>
                                                     @endif
                                                 </select>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     @endforeach
                               </tbody>
