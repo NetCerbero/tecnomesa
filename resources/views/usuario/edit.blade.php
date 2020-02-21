@@ -1,6 +1,11 @@
 @extends('template')
 @section('style')
-
+<style>
+    .nota{
+        font-size: 0.9em;
+        color: #fd6a6a;
+    }
+</style>
 @endsection
 @section('title')
 <h2>Edición de usuarios</h2>
@@ -13,21 +18,33 @@
             <div class="card-header">Edición de usuario</div>
             <div class="card-body">
             <form method="POST" action="{{route('usuario.update',$user->id)}}">
+                 @php
+                       $datos = Auth::user()->userDataUagrm($user->registro);
+                 @endphp
                 @csrf
                 @method('PUT')
                 <div class="form-group">
                     <label>Nombre</label>
-                    <input name="nombre" value="{{$user->nombre}}" class="form-control" type="text" placeholder="Ingrese el nombre">
+                    @if ($user->tipo == 1)
+                        <p>{{ $datos['datos']['nombre'] }}</p>
+                    @else
+                        <input name="nombre" value="{{$user->nombre}}" class="form-control" type="text" placeholder="Ingrese el nombre">
+                    @endif
                 </div>
-
-                <div class="form-group">
-                    <label>Apellido</label>
-                    <input name="apellido" value="{{$user->apellido}}" class="form-control" type="text" placeholder="Ingrese el apellido">
-                </div>
+                @if ($user->tipo != 1)
+                    <div class="form-group">
+                        <label>Apellido</label>
+                        <input name="apellido" value="{{$user->apellido}}" class="form-control" type="text" placeholder="Ingrese el apellido">
+                    </div>
+                @endif
+                
                 
                 <div class="form-group">
                     <label>Genero</label>
-                    <select name="genero" id="" class="form-control">
+                    @if ($user->tipo == 1)
+                        <p>{{ $datos['datos']['sexo'] }}</p>
+                    @else
+                        <select name="genero" id="" class="form-control">
                         <option value="">Elija el genero</option>
                         @if($user->genero == 'm')
                             <option value="m" selected>Masculino</option>
@@ -37,6 +54,7 @@
                             <option value="f" selected>Femenino</option>
                         @endif
                     </select>
+                    @endif
                 </div>
                 
                 <div class="form-group">
@@ -45,20 +63,22 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Contraseña</label>
-                    <input name="password" value="{{$user->password}}"  class="form-control" type="text" placeholder="Ingrese nueva contraseña">
+                    <label>Contraseña</label><br>
+                    <span class="nota">Nota: Deje la casilla en blanco si no quiere cambiar la contraseña</span>
+                    <input name="password" class="form-control" type="text" placeholder="Ingrese nueva contraseña">
                 </div>
 
                 
-                @if($user->tipo == 2)
-                    <div class="form-group">
-                        <label>Codigo</label>
-                        <input name="codigo" value="{{$user->registro}}" class="form-control" type="text" placeholder="codigo de usuario">
-                    </div>
-                @elseif($user->tipo == 1)
+                
+                @if($user->tipo == 1)
                     <div class="form-group">
                         <label>Registro</label>
-                        <input name="registro" value="{{$user->registro}}" class="form-control" type="number" placeholder="registro de estudiante">
+                        <p>{{ $user->registro }}</p>
+                    </div>
+                @else
+                    <div class="form-group">
+                        <label>Registro</label>
+                        <input name="registro" value="{{$user->registro}}" class="form-control" type="number" placeholder="registro de usuario">
                     </div>
                 @endif
                 <input name="tipo" class="form-control" type="hidden" value="{{$user->tipo}}">

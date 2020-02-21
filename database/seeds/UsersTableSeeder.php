@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
         	'email' => 'gino@gmail.com',
         	'password' => Hash::make('123'),
         	'registro' => '215049965',
-        	'genero' => 'M',
+        	'genero' => 'm',
         	'tipo' => 2,
         	'rol_id' => 2
         ]);
@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
         	'email' => 'juan@gmail.com',
         	'password' => Hash::make('123'),
         	'registro' => '215040085',
-        	'genero' => 'M',
+        	'genero' => 'm',
         	'tipo' => 3,
         	'rol_id' => 3
         ]);
@@ -57,7 +57,7 @@ class UsersTableSeeder extends Seeder
         	'email' => 'luis@gmail.com',
         	'password' => Hash::make('123'),
         	'registro' => '215049063',
-        	'genero' => 'M',
+        	'genero' => 'm',
         	'tipo' => 4,
         	'rol_id' => 4
         ]);
