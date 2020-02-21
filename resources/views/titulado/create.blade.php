@@ -43,11 +43,11 @@
                     <label class="mb-0">Lista de egresados: </label>
                     <select name="egresado_id" id="" class="chosen-select form-control" required>
                         <option value="">Elija el egresado</option>
-                        @foreach ($egresados as $egresado)
+                        @foreach ($graduaciones as $graduacion)
                             @php
-                                $dato = Auth::user()->userDataUagrm($egresado->registro);
+                                $dato = Auth::user()->userDataUagrm($graduacion->egresado->registro);
                             @endphp
-                            <option value="{{ $egresado->id }}">{{ $dato['datos']['nombre'].' - '.$egresado->registro }}</option>
+                            <option value="{{ $graduacion->egresado->id }}">{{ $dato['datos']['nombre'].' - '.$graduacion->egresado->registro }}</option>
                         @endforeach
                     </select>
                 </div>

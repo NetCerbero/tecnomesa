@@ -35,7 +35,7 @@
                               <th>Tutor</th>
                               <th>Titulo</th>
                               <th>Area</th>
-                              {{-- <th>Acciones</th> --}}
+                              <th>Acciones</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -46,15 +46,17 @@
                                 <tr class="gradeX">
                                   <td>{{ $graduacion->egresado->registro }}</td>
                                   <td>{{ $datos['datos']['nombre'] }}</td>
+                                  
                                   <td>
                                   	@if ($graduacion->tipo == 1)
-						            	Graduación directa
-						            @elseif($graduacion->tipo == 2)
-						            	Examen de grado
-						            @else
-						            	Tesis/Trabajo Final/Trabajo Dirigido
-						            @endif
+            						            	Graduación directa
+            						            @elseif($graduacion->tipo == 2)
+            						            	Examen de grado
+            						            @else
+            						            	Tesis/Trabajo Final/Trabajo Dirigido
+            						            @endif
                                   </td>
+
                                   <td>
                                   	@if ($graduacion->tipo == 3)
                                   		{{ $graduacion->tutor->nombre. ' ' .$graduacion->tutor->apellido.' - '.$graduacion->tutor->registro }}
@@ -63,6 +65,7 @@
                                   	@endif
                                   	
                                   </td>
+
                                   <td>
                                   	@if ($graduacion->tipo == 3)
                                   		{{ $graduacion->titulo }}
@@ -70,6 +73,7 @@
                                   		---------------------------
                                   	@endif
                                   </td>
+
                                   <td>
                                   	@if ($graduacion->tipo == 1)
                                   		---------
@@ -77,6 +81,8 @@
                                   		{{ $graduacion->area->area }}
                                   	@endif
                                   </td>
+
+                                  <td>
                                     <a class="badge badge-secondary" href="{{route('egresado.show',$graduacion->id)}}"> visualizar </a>
                                     <a class="badge badge-warning" href="{{route('egresado.edit',$graduacion->id)}}"> editar </a>
                                     <a class="badge badge-danger" href="{{route('egresado.destroy',$graduacion->id)}}"> eliminar </a>

@@ -6,7 +6,7 @@ use App\Titulado;
 use Illuminate\Http\Request;
 use App\User;
 use App\Estadistica;
-
+use App\Graduacion;
 class TituladoController extends Controller
 {
     private $id = 10;
@@ -36,9 +36,9 @@ class TituladoController extends Controller
      */
     public function create()
     {
-        $egresados = User::all()->where('tipo',1);
+        $graduaciones = Graduacion::all();
         $contador = $this->estadisticas();
-        return view('titulado.create',compact('egresados','contador'));
+        return view('titulado.create',compact('graduaciones','contador'));
     }
 
     /**
