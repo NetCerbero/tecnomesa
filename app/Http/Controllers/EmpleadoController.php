@@ -69,7 +69,7 @@ class EmpleadoController extends Controller
     {
         $empleado = Empleado::findOrFail($id);
         $contador = $this->estadisticas();
-        return view('empleado.show', compact('titulado','contador'));
+        return view('empleado.show', compact('empleado','contador'));
     }
 
     /**
@@ -80,7 +80,13 @@ class EmpleadoController extends Controller
      */
     public function edit($id)
     {
-
+        $empleado = Empleado::find($id);
+        $empresas = Empresa::all();
+        $nivelPuestos = NivelPuesto::all();
+        $titulados = Titulado::all();
+        $areas = Area::all()->where('tipo',2);
+        $contador = $this->estadisticas();
+        return view('empleado.edit',compact('empresas','nivelPuestos','areas','titulados','contador','empleado'));
     }
 
     /**
@@ -90,9 +96,11 @@ class EmpleadoController extends Controller
      * @param  \App\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empleado $empleado)
-    {
-        //
+    public function update(Request $request, $id)
+    {   
+        Empleado::find($id)->update($request->all());
+        $this->estadisticas();
+        return redirect()->route('inflaboral.index');
     }
 
     /**

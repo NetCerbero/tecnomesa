@@ -20,13 +20,14 @@
           <div class="card card-default">
              <div class="card-header"></div>
              <div class="card-body text-center">
-
-             
                
-                <p><strong>Nombre:</strong> {{ $titulado->egresado->registro }}</p>
+                <p><strong>Nombre:</strong> {{ $datos['datos']['nombre'] }} </p>
                 <p><strong>Empresa:</strong> {{ $empleado->empresa->nombre }}</p>
                 <p><strong>Area: </strong> {{ $empleado->area->area }}</p>
+                <p><strong>Puesto: </strong> {{ $empleado->nivelPuesto->nivel }}</p>
                 <p><strong>Funcion: </strong> {{ $empleado->funcion}}</p>
+                <p><strong>Tecnología: </strong> {{ $empleado->tecnologia}}</p>
+                <p><strong>Conocimiento: </strong> {{ $empleado->conocimiento}}</p>
   
 
              </div>
