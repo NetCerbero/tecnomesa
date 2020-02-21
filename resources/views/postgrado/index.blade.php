@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{{ asset('vendor/datatables.net-responsive-bs/css/responsive.bootstrap.css') }}"><!-- =============== BOOTSTRAP STYLES ===============-->
 @endsection
 @section('title')
-<h3>Titulados</h3>
+<h3>Postgrado</h3>
 @endsection
 @section('content')
 <div class="d-flex justify-content-end my-2">

@@ -32,15 +32,15 @@
             <form method="POST" action="{{route('titulado.store')}}" class="form-row" enctype="multipart/form-data">
                 @csrf
 
-                <div class="form-group col-6">
+                <div class="form-group col-12 col-md-6">
                     <label>Año titulacion </label>
                     <input  name="anio_titulacion" type="number" class="form-control tesis" placeholder="el titulo">
                 
                     
                 </div>
                 
-                <div class="form-group col-12">
-                    <label class="mb-0">Lista de egresados: </label>
+                <div class="form-group col-12 col-md-6">
+                    <label >Lista de egresados: </label>
                     <select name="egresado_id" id="" class="chosen-select form-control" required>
                         <option value="">Elija el egresado</option>
                         @foreach ($graduaciones as $graduacion)

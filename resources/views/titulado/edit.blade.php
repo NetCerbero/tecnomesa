@@ -35,22 +35,27 @@
             <form method="POST" action="{{route('titulado.update',$titulado->id)}}" class="form-row" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="form-group col-6">
-                    <label>Año titulacion </label>
-                    <input  name="anio_titulacion" type="number" class="form-control tesis" placeholder="el titulo">
+                <div class="form-group col-12 col-md-6">
+                    <label>Año titulacion</label>
+                    <input  name="anio_titulacion" type="number" class="form-control tesis" placeholder="año de titulación" value="{{ $titulado->anio_titulacion }}">
                 
                     
                 </div>
-                
-                <div class="form-group col-12">
-                    <label class="mb-0">Lista de egresados: </label>
+                 
+                <div class="form-group col-12 col-md-6">
+                    <label>Lista de egresados: </label>
                     <select name="egresado_id" id="" class="chosen-select form-control" required>
-                        <option value="">Elija el egresado</option>
-                        @foreach ($egresados as $egresado)
+
+                        <option value="">Elija el titulado</option>
+                        @foreach ($graduaciones as $graduacion)
                             @php
-                                $datos = Auth::user()->userDataUagrm($egresado->registro);
+                                $datos = Auth::user()->userDataUagrm($graduacion->egresado->registro);
                             @endphp
-                            <option value="{{ $egresado->id }}">{{ $datos['datos']['nombre'].' - '.$egresado->registro }}</option>
+                            @if ($titulado->egresado_id == $graduacion->egresado_id )
+                              <option selected value="{{ $graduacion->egresado->id }}">{{ $datos['datos']['nombre'].' - '.$graduacion->egresado->registro }}</option>
+                            @else
+                              <option value="{{ $graduacion->egresado->id }}">{{ $datos['datos']['nombre'].' - '.$graduacion->egresado->registro }}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
