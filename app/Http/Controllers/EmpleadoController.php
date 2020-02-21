@@ -65,9 +65,11 @@ class EmpleadoController extends Controller
      * @param  \App\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function show(Empleado $empleado)
+    public function show($id)
     {
-        //
+        $empleado = Empleado::findOrFail($id);
+        $contador = $this->estadisticas();
+        return view('empleado.show', compact('titulado','contador'));
     }
 
     /**
@@ -76,9 +78,9 @@ class EmpleadoController extends Controller
      * @param  \App\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empleado $empleado)
+    public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -99,8 +101,10 @@ class EmpleadoController extends Controller
      * @param  \App\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empleado $empleado)
+    public function destroy($id)
     {
-        //
+        Empleado::destroy($id);
+        $this->estadisticas();
+        return redirect()->route('inflaboral.index');
     }
 }
