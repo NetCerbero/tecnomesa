@@ -17,7 +17,7 @@
                   <div class="card-header">
                     <div class="card-title">
                         <div class="d-flex bd-highlight mb-3">
-                          <div class="p-2 bd-highlight">Gestión de egresados</div>
+                          <div class="p-2 bd-highlight">Lista de egresados</div>
                          {{--  <div class="p-2 bd-highlight ml-auto">
                             <a href="{{ route('empresa.create') }}" class="ml-auto btn btn-primary">Registrar</a>
                           </div> --}}
@@ -81,7 +81,11 @@
                                   <td>
                                     <a class="badge badge-secondary" href="{{route('egresado.show',$graduacion->id)}}"> visualizar </a>
                                     <a class="badge badge-warning" href="{{route('egresado.edit',$graduacion->id)}}"> editar </a>
-                                    <a class="badge badge-danger" href="{{route('egresado.destroy',$graduacion->id)}}"> eliminar </a>
+                                    <form action="{{ route('egresado.destroy', $graduacion->id) }}" method="post">
+                                        {{ method_field('DELETE') }}
+                                        @csrf
+                                        <button class="badge badge-danger"> eliminar</button>
+                                    </form>  
                                   </td>
                                 </tr>
                             @endforeach
