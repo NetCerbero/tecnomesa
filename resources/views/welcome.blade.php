@@ -83,7 +83,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <!-- ##################### gestion de usuarios ##################### -->
-            <li class="nav-item dropdown">
+            {{-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="opcionesDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Opciones
@@ -94,7 +94,7 @@
                     <a class="dropdown-item" href="#">Opcion3</a>
                     <!-- <div class="dropdown-divider"></div> -->
                 </div>
-            </li>
+            </li> --}}
         </ul>
         <ul class="navbar-nav navbar-right">
             <li class="nav-item dropdown">
@@ -110,9 +110,9 @@
                     </form>
                     <!-- <div class="dropdown-divider"></div> -->
                     <a class="dropdown-item" href="{{ route('login') }}">Iniciar Sesión</a>
-                    @if (Route::has('register'))
+                    {{-- @if (Route::has('register'))
                         <a class="dropdown-item" href="{{ route('register') }}">Registrarse</a>
-                    @endif
+                    @endif --}}
                 </div>
             </li>
         </ul>
@@ -142,34 +142,15 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><span class="oi oi-question-mark" style="color: #343A40"></span>
-                        Acerca del Sistema de Gestión de Egresados
+                    <h5 class="card-title">{{-- <span class="oi oi-question-mark" style="color: #343A40"></span> --}}
+                        Administración de Empresas
                     </h5>
                     <hr>
                     <p style="text-align: justify;">
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gerendus est mos, modo recte sentiat. Ex
-                        ea
-                        difficultate illae fallaciloquae, ut ait Accius, malitiae natae sunt. Cur igitur easdem res,
-                        inquam,
-                        Peripateticis dicentibus verbum nullum est, quod non intellegatur? Summus dolor plures dies
-                        manere non
-                        potest?</p>
+                    <p>La administración es la ciencia social que tiene por objeto el estudio de las organizaciones y la técnica encargada de la planificación, organización, dirección y control de los recursos (humanos, financieros, materiales, tecnológicos, del conocimiento, etc.) de una organización, con el fin de tomar el máximo beneficio posible; este beneficio puede ser social, económico, dependiendo de los fines perseguidos por la organización.</p>
 
-                    <p>Duo Reges: constructio interrete.
-                        <mark>Primum in nostrane potestate est, quid meminerimus?</mark>
-                        <b>Quamquam id quidem, infinitum est in hac urbe;</b>Immo alio genere;
-                        <mark>Cur id non ita fit?</mark>
-                        Isto modo ne improbos quidem,
-                        si essent boni viri. Collatio igitur ista te nihil iuvat. Hoc dixerit potius Ennius: Nimium boni
-                        est,
-                        cui nihil est mali. Ac tamen hic mallet non dolere. Haeret in salebra.
-                    </p>
-
-                    <p>Si quicquam extra virtutem habeatur in bonis. Ut scias me intellegere, primum idem esse dico
-                        voluptatem, quod ille don. Facit enim ille duo seiuncta ultima bonorum, quae ut essent vera,
-                        coniungi
-                        debuerunt; Sed erat aequius Triarium aliquid de dissensione nostra iudicare. </p>
+                    <p>La Administración es el proceso de planificar, organizar, dirigir y controlar el manejo de los recursos y las actividades de trabajo con el propósito de lograr los objetivos o metas propuestas de la organización de manera eficiente y eficaz. Permite implementar nuevas estrategias para el logro de las metas para tener éxito en la empresa u organización.
                     </p>
                 </div>
             </div>
@@ -187,13 +168,14 @@
                     <h5 class="card-title"><span class="oi oi-info" style="color: #343A40"></span> Misión
                     </h5>
                     <hr>
-                    <ol>
+                    {{-- <ol>
                         <li>Nam et complectitur verbis, quod vult, et dicit plane, quod intellegam;</li>
                         <li>Scripta sane et multa et polita, sed nescio quo pacto auctoritatem oratio non habet.</li>
                         <li>Quodcumque in mentem incideret, et quodcumque tamquam occurreret.</li>
                         <li>Itaque vides, quo modo loquantur, nova verba fingunt, deserunt usitata.</li>
                         <li>Expressa vero in iis aetatibus, quae iam confirmatae sunt.</li>
-                    </ol>
+                    </ol> --}}
+                    <p>Proporcionar a la población estudiantil y a la sociedad, los servicios de la ciencia, la tecnología y la experiencia para formar profesionales con principios éticos y morales, con valores de equidad, espíritu de liderazgo y capaces de dirigir organizaciones con eficiencia, en un marco de convivencia social para mejorar la calidad de vida del ser humano.</p>
                 </div>
             </div>
         </div>
@@ -203,7 +185,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><span class="oi oi-info" style="color: #343A40"></span> Visión</h5>
                     <hr>
-                    <dl>
+                    {{-- <dl>
                         <dt><dfn>Quod equidem non reprehendo;</dfn></dt>
                         <dd>Theophrasti igitur, inquit, tibi liber ille placet de beata vita?</dd>
                         <dt><dfn>Beatum, inquit.</dfn></dt>
@@ -214,7 +196,8 @@
                         </dd>
                         <dt><dfn>Explanetur igitur.</dfn></dt>
                         <dd>Quod ea non occurrentia fingunt, vincunt Aristonem;</dd>
-                    </dl>
+                    </dl> --}}
+                    <p>Formar profesionales con capacidad técnica, científica y humanista, para administrar el cambio en las organizaciones de la sociedad.</p>
                 </div>
             </div>
         </div>
