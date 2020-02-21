@@ -33,7 +33,7 @@
                               <th>Titulado</th>
                               <th>Modalidad</th>
                               <th>Año titulacion</th>
-                              {{-- <th>Acciones</th> --}}
+                              <th>Acciones</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -54,7 +54,19 @@
             						            @endif
                                   </td>
                                   <td>{{ $titulado->anio_titulacion }}</td>
-                                  {{-- <td><a class="badge badge-warning" href="{{route('egresado.edit',$graduacion->id)}}"> editar </a></td> --}}
+                                  <td>
+                                    <a class="badge badge-secondary" href="{{route('titulado.show',$titulado->id)}}"> visualizar </a>
+
+                                    <a class="badge badge-warning" href="{{route('titulado.edit',$titulado->id)}}"> editar </a>
+
+                                    <form action="{{ route('titulado.destroy', $titulado->id) }}" method="post">
+                                        {{ method_field('DELETE') }}
+                                        @csrf
+                                        <button class="badge badge-danger"> eliminar</button>
+                                    </form>  
+
+
+                                  </td>
                                 </tr>
                             @endforeach
                         </tbody>
