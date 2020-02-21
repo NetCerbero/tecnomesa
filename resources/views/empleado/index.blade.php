@@ -33,6 +33,7 @@
                               <th>Empresa</th>
                               <th>Area</th>
                               <th>Puesto</th>
+                              <th>Acciones</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -45,7 +46,17 @@
                                   <td>{{ $empleado->empresa->nombre }}</td>
                                   <td>{{ $empleado->area->area }}</td>
                                   <td>{{ $empleado->nivelPuesto->nivel }}</td>
-                                  {{-- <td><a class="badge badge-warning" href="{{route('egresado.edit',$graduacion->id)}}"> editar </a></td> --}}
+                                  <td>
+                                    <a class="badge badge-secondary" href="{{route('inflaboral.show',$empleado->id)}}"> visualizar </a>
+
+                                    <a class="badge badge-warning" href="{{route('inflaboral.edit',$empleado->id)}}"> editar </a>
+                                    <form action="{{ route('inflaboral.destroy', $empleado->id) }}" method="post">
+                                        {{ method_field('DELETE') }}
+                                        @csrf
+                                        <button class="badge badge-danger"> eliminar</button>
+                                    </form>  
+
+                                  </td>
                                 </tr>
                             @endforeach
                         </tbody>
