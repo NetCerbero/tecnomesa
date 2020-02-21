@@ -6,7 +6,7 @@ use App\Titulado;
 use Illuminate\Http\Request;
 use App\User;
 use App\Estadistica;
-use App\Graduacion;
+
 class TituladoController extends Controller
 {
     private $id = 10;
@@ -36,9 +36,9 @@ class TituladoController extends Controller
      */
     public function create()
     {
-        $graduaciones = Graduacion::all();
+        $egresados = User::all()->where('tipo',1);
         $contador = $this->estadisticas();
-        return view('titulado.create',compact('graduaciones','contador'));
+        return view('titulado.create',compact('egresados','contador'));
     }
 
     /**
@@ -60,9 +60,11 @@ class TituladoController extends Controller
      * @param  \App\Titulado  $titulado
      * @return \Illuminate\Http\Response
      */
-    public function show(Titulado $titulado)
+    public function show($id)
     {
-        $this->estadisticas();
+        $titulado = Titulado::findOrFail($id);
+        $contador = $this->estadisticas();
+        return view('titulado.show', compact('titulado','contador'));
     }
 
     /**
@@ -71,9 +73,12 @@ class TituladoController extends Controller
      * @param  \App\Titulado  $titulado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Titulado $titulado)
+    public function edit($id)
     {
-        $this->estadisticas();
+        $titulado = Titulado::find($id);
+        $egresados = User::all()->where('tipo',1);
+        $contador = $this->estadisticas();
+        return view('titulado.edit',compact('titulado','egresado','contador'));
     }
 
     /**
@@ -83,9 +88,12 @@ class TituladoController extends Controller
      * @param  \App\Titulado  $titulado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Titulado $titulado)
+    public function update(Request $request, $id)
     {
+        $titulado = Titulado::find($id);
+        $titulado->update($request->all());
         $this->estadisticas();
+        return redirect()->route('titulado.index');
     }
 
     /**
@@ -94,8 +102,10 @@ class TituladoController extends Controller
      * @param  \App\Titulado  $titulado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Titulado $titulado)
+    public function destroy($id)
     {
+        Titulado::destroy($id);
         $this->estadisticas();
+        return redirect()->route('titulado.index');
     }
 }
