@@ -33,7 +33,7 @@
                               <th>Estudiante</th>
                               <th>Titulo</th>
                               <th>Grado</th>
-                              {{-- <th>Acciones</th> --}}
+                              <th>Acciones</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -46,6 +46,15 @@
                                   <td>{{ $datos['datos']['nombre'] }}</td>
                                   <td>{{ $postgrado->titulo }}</td>
                                   <td>{{ $postgrado->gradoTitulo->grado }}</td>
+                                  <td>
+                                    <a class="badge badge-warning" href="{{ route('postgrado.edit',$postgrado->id) }}">Editar</a>
+                                    <a class="badge badge-secondary" href="{{ route('postgrado.show',$postgrado->id) }}">Visualizar</a>
+                                    <form action="{{ route('postgrado.destroy', $postgrado->id) }}" method="post">
+                                        {{ method_field('DELETE') }}
+                                        @csrf
+                                        <button class="badge badge-danger"> eliminar</button>
+                                    </form>  
+                                  </td>
                                   {{-- <td><a class="badge badge-warning" href="{{route('egresado.edit',$graduacion->id)}}"> editar </a></td> --}}
                                 </tr>
                             @endforeach

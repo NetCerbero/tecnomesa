@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class NivelPuesto extends Model
 {
     use SoftDeletes;
+    protected $fillable = ['nivel'];
 }

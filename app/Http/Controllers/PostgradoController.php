@@ -63,9 +63,11 @@ class PostgradoController extends Controller
      * @param  \App\Postgrado  $postgrado
      * @return \Illuminate\Http\Response
      */
-    public function show(Postgrado $postgrado)
+    public function show($id)
     {
-        //
+        $postgrado =  Postgrado::find($id);
+        $contador = $this->estadisticas();
+        return view('postgrado.show',compact('contador','postgrado'));
     }
 
     /**
@@ -74,9 +76,13 @@ class PostgradoController extends Controller
      * @param  \App\Postgrado  $postgrado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Postgrado $postgrado)
+    public function edit($id)
     {
-        $this->estadisticas();
+        $postgrado =  Postgrado::find($id);
+        $grados = GradoAcademico::all();
+        $titulados = Titulado::all();
+        $contador = $this->estadisticas();
+        return view('postgrado.edit',compact('grados','titulados','contador','postgrado'));
     }
 
     /**
@@ -86,9 +92,11 @@ class PostgradoController extends Controller
      * @param  \App\Postgrado  $postgrado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Postgrado $postgrado)
+    public function update(Request $request, $id)
     {
-        //
+        Postgrado::find($id)->update($request->all());
+        $this->estadisticas();
+        return redirect()->route('postgrado.index');
     }
 
     /**
@@ -97,8 +105,10 @@ class PostgradoController extends Controller
      * @param  \App\Postgrado  $postgrado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Postgrado $postgrado)
+    public function destroy($id)
     {
-        //
+        Postgrado::destroy($id);
+        $this->estadisticas();
+        return redirect()->route('postgrado.index');
     }
 }
