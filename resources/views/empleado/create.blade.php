@@ -20,14 +20,14 @@
    </style>
 @endsection
 @section('title')
-<h3>Registro de postgrado</h3>
+<h3>Información Laboral</h3>
 @endsection
 @section('content')
 <div class="row">
     <div class="col">
         <!-- START card-->
         <div class="card card-default">
-            <div class="card-header">Registro postgrado</div>
+            <div class="card-header">Registro de empleos</div>
             <div class="card-body">
             <form method="POST" action="{{route('inflaboral.store')}}" class="form-row" enctype="multipart/form-data">
                 @csrf
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="form-group col-12 col-md-6">
-                    <label class="mb-0">Grado: </label>
+                    <label class="mb-0">Empresa: </label>
                     <select name="empresa_id" id="" class="chosen-select form-control" required>
                         <option value="">Elija la empresa</option>
                         @foreach ($empresas as $empresa)
@@ -92,7 +92,7 @@
                 <div class="form-group col-12 col-md-6">
                     <label class="mb-0">Nivel de puesto: </label>
                     <select name="nivel_id" id="" class="chosen-select form-control" required>
-                        <option value="">Elija el tribunal</option>
+                        <option value="">Elija el puesto</option>
                         @foreach ($nivelPuestos as $nivelPuesto)
                             {{-- @php
                                 $dato = Auth::user()->userDataUagrm($egresado->registro);
