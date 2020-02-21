@@ -23,7 +23,7 @@
 
                 <div class="form-group col-12">
                     <label>Archivo: </label>
-                    <a href="{{ Storage::url($avance->file) }}">archivo</a>
+                    <a href="{{ url(Storage::url($avance->file)) }}">archivo</a>
                 </div>
 
                 <div class="form-group col-12">
